@@ -28,7 +28,8 @@ const SignUpForm = ({
           label="Email"
           value={user.email}
           onChange={onChange}
-          errorText={errors.email}
+          error={errors.email}
+          helperText={errors.email}
         /></div>
         <div className="signUpFields">
         <TextField
@@ -37,7 +38,8 @@ const SignUpForm = ({
           label="Password"
           value={user.password}
           onChange={onPwChange}
-          errorText={errors.password}
+          error={errors.password}
+          helperText={errors.password}
         />
         </div>
         <div className="signUpFields">
@@ -47,7 +49,8 @@ const SignUpForm = ({
           label="Confirm Password"
           value={user.pwconfirm}
           onChange={onChange}
-          errorText={errors.pwconfirm}
+          error={errors.pwconfirm}
+          helperText={errors.pwconfirm}
         />
         </div>
         <div className="pwStrRow">
@@ -65,7 +68,6 @@ const SignUpForm = ({
         <Button 
           variant="contained"
           className="signUpSubmit"
-          primary={true}
           type="submit"
         >Sign Up</Button>
       </form>

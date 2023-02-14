@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Button from '@mui/material/Button';
-import { render } from "react-dom";
 import SignUp from "./SignUpContainer";
 
 class App extends Component {

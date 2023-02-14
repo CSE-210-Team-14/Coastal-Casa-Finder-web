@@ -5,7 +5,7 @@ const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
 const zxcvbn = require("zxcvbn");
 
-class SignUpContainer extends Component {
+export default class SignUpContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -136,5 +136,3 @@ class SignUpContainer extends Component {
     );
   }
 }
-
-export default SignUpContainer;
