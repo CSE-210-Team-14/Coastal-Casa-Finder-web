@@ -7,15 +7,6 @@ const validateSignUpForm = payload => {
 
   if (
     !payload ||
-    typeof payload.username !== "string" ||
-    payload.username.trim().length === 0
-  ) {
-    isFormValid = false;
-    errors.username = "Please provide a user name.";
-  }
-
-  if (
-    !payload ||
     typeof payload.email !== "string" ||
     !validator.isEmail(payload.email)
   ) {
