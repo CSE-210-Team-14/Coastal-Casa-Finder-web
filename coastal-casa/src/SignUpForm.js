@@ -16,7 +16,6 @@ const SignUpForm = ({
   pwMask,
   onPwChange
 }) => {
-  console.log(errors)
   return (
     <div className="loginBox">
       <h1>Sign Up</h1>
@@ -66,6 +65,10 @@ const SignUpForm = ({
             </div>
             )} 
         </div>
+        <div className="signUpFields">
+          <input type="checkbox" id="scales" name="landlord_checkbox"></input>
+          I am a landlord
+          </div>
         <Button 
           variant="contained"
           className="signUpSubmit"

@@ -46,11 +46,11 @@ const validateLoginForm = payload => {
 
   if (
     !payload ||
-    typeof payload.username !== "string" ||
-    payload.username.trim().length === 0
+    typeof payload.email !== "string" ||
+    payload.email.trim().length === 0
   ) {
     isFormValid = false;
-    errors.username = "Please provide your user name.";
+    errors.email = "Please provide your email.";
   }
 
   if (

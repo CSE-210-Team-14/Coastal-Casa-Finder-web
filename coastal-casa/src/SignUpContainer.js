@@ -12,7 +12,6 @@ export default class SignUpContainer extends Component {
     this.state = {
       errors: {},
       user: {
-        username: "",
         email: "",
         password: "",
         pwconfirm: ""
@@ -66,7 +65,7 @@ export default class SignUpContainer extends Component {
 
   
   submitSignup(user) {
-    var params = { username: user.usr, password: user.pw, email: user.email };
+    var params = { landlord_checkbox: user.landlord_checkbox, password: user.pw, email: user.email };
     /* TODO:  Connect to our server
     axios
       .post("https://ouramazingserver.com/api/signup/submit", params)
@@ -88,13 +87,14 @@ export default class SignUpContainer extends Component {
 
   validateForm(event) {
     event.preventDefault();
+    console.log(this.state.user)
     var payload = validateSignUpForm(this.state.user);
     if (payload.success) {
       this.setState({
         errors: {}
       });
       var user = {
-        usr: this.state.user.username,
+        landlord_checkbox: this.state.user.landlord_checkbox,
         pw: this.state.user.password,
         email: this.state.user.email
       };
