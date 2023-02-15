@@ -31,7 +31,7 @@ class App extends Component {
             Sign Up
           </Button>
         </div>
-        {showSignUp && <SignUp />}
+        {showSignUp && <SignUp/>}
       </div>
     );
   }

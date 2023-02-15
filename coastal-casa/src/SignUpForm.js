@@ -16,6 +16,7 @@ const SignUpForm = ({
   pwMask,
   onPwChange
 }) => {
+  console.log(errors)
   return (
     <div className="loginBox">
       <h1>Sign Up</h1>
@@ -28,7 +29,7 @@ const SignUpForm = ({
           label="Email"
           value={user.email}
           onChange={onChange}
-          error={errors.email}
+          error={"email" in errors}
           helperText={errors.email}
         /></div>
         <div className="signUpFields">
@@ -38,7 +39,7 @@ const SignUpForm = ({
           label="Password"
           value={user.password}
           onChange={onPwChange}
-          error={errors.password}
+          error={"password" in errors}
           helperText={errors.password}
         />
         </div>
@@ -49,7 +50,7 @@ const SignUpForm = ({
           label="Confirm Password"
           value={user.pwconfirm}
           onChange={onChange}
-          error={errors.pwconfirm}
+          error={"pwconfirm" in errors}
           helperText={errors.pwconfirm}
         />
         </div>

@@ -118,7 +118,6 @@ export default class SignUpContainer extends Component {
   }
 
   render() {
-    console.log('here')
     return (
       <div>
         <SignUpForm
