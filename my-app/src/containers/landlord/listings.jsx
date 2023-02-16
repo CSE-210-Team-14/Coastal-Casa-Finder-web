@@ -40,11 +40,13 @@ const Listings = () => {
       <h2 className="heading-main">Landlord's Listings</h2>
       <div className="listing">
         <div className="listings-main">
-          <p>Current Applications</p>
+          <p className="listing-heading">Current Applications</p>
+          <p className="num-listing">{landlordListings.length} Listings</p>
           {landlordListings}
         </div>
         <div className="listings-pending">
-          <p>Pending Applications</p>
+          <p className="listing-heading">Pending Applications</p>
+          <p className="num-listing">{listingPending.length} Listings</p>
           {listingPending}
         </div>
       </div>
