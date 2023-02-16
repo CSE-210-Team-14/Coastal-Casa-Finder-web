@@ -27,3 +27,30 @@
   padding: 20px;
   position: relative;
 }
+
+.listing-heading {
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 28px;
+  /* identical to box height, or 78% */
+
+  letter-spacing: 0.2px;
+
+  color: #3E4958;
+}
+
+.num-listing {
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 149.8%;
+  /* identical to box height, or 24px */
+
+  text-align: center;
+
+  color: #3E4958;
+
+}

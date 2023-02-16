@@ -29,8 +29,34 @@
   }
 
   button {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    gap: 10px;
     background: rgba(219, 219, 254, 0.5);
     border-radius: 30px;
+
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 149.8%;
+    /* identical to box height, or 24px */
+
+    text-align: center;
+
+    color: #3E4958;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
   }
 
   p {
