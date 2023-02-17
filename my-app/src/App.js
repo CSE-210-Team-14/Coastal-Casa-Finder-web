@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.scss';
 import Listings from './containers/landlord/listings';
+import ListingInfo from './containers/info/listingInfo';
 
 function App() {
   return (
@@ -20,7 +20,9 @@ function App() {
         </a>
       </header> */}
       {/* <div>Here</div> */}
+      
       <Listings />
+      <ListingInfo />
     </div>
   );
 }

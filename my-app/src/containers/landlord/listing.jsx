@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./listing.scss";
 
 const Listing = (props) => {
-  console.log(props.name);
+  //console.log(props.name);
   return (
     <div className="listing-main">
       <img src={props.pic} alt=""></img>
