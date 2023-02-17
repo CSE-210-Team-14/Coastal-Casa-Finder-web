@@ -4,10 +4,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Switch, Routes, 
   Route, Navigate, Redirect} from "react-router-dom";
 import Listings from './containers/landlord/listings';
-import ListingInfo from './containers/info/listingInfo';
-import ListingSearch from './containers/search/listingSearch'
-import Listing from './containers/landlord/listing';
-
 
 function App() {
   return (
@@ -27,14 +23,7 @@ function App() {
         </a>
       </header> */}
       {/* <div>Here</div> */}
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Listings} />
-          <Route path='/listingInfo' component={ListingInfo} />
-          <Route path='/listingSearch' component={ListingSearch} />
-        </Switch>
-      </Router>
-      
+      <Listings />
     </div>
   );
 }
