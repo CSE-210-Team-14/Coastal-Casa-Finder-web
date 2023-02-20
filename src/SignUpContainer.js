@@ -66,7 +66,7 @@ export default class SignUpContainer extends Component {
   
   submitSignup(user) {
     console.log(user)
-    // var params = { landlord_checkbox: user.landlord_checkbox, password: user.pw, email: user.email };
+    var params = { landlord_checkbox: user.landlord_checkbox, password: user.pw, email: user.email };
     /* TODO:  Connect to our server
     axios
       .post("https://ouramazingserver.com/api/signup/submit", params)
