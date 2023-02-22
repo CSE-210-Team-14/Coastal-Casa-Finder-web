@@ -47,9 +47,10 @@ const ListingInfo = () => {
                     <p className="property-entry">{currentListing.city}</p>
                 </div>
 
-                <div>
-                    <button className="edit-button">Update/Edit</button>
-                </div>
+            <div>
+                <button className="edit-button">Update/Edit</button>
+            </div>
+            
             </div>
         </>
     );
