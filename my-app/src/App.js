@@ -1,6 +1,7 @@
 import './App.scss';
 import Listings from './containers/landlord/listings';
 import ListingInfo from './containers/info/listingInfo';
+import ListingSearch from './containers/search/listingSearch'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       
       <Listings />
       <ListingInfo />
+      <ListingSearch />
     </div>
   );
 }
