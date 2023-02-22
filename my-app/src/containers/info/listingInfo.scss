@@ -38,9 +38,10 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding: 10px;
 
     width: 711px;
-    height: 225px;
+    height: auto;
 
     border: 1px solid #918686;
     border-radius: 8px;
@@ -113,7 +114,7 @@
     background: rgba(219, 219, 254, 0.5);
     border-radius: 30px;
     padding: 10px;
-    margin: 75px;
+    margin: 20px;
 
     font-family: 'Abel';
     font-style: normal;
