@@ -21,17 +21,11 @@ class App extends Component {
   }
 
   hideComponent(name) {
-    console.log(name);
-    switch (name) {
-      case "showSignUp":
-        this.setState({ showSignUp: !this.state.showSignUp });
-        break;
-      default:
-    }
+    console.log(name, 'test');
+    this.setState({ showSignUp: !this.state.showSignUp });
   }
 
   render() {
-    const { showSignUp } = this.state;
     const results = "100+";
     const location = "San Diego";
     const searchResults = [{key: "1", img: 'https://i.postimg.cc/pXdGBLT7/19414d6a-8471-4088-8ea3-ba034acc87ca.webp', location: "San Diego", description: "Cool house!", title: "Apartment", star: "4.8", price: "1000", total: "500"}, 
@@ -45,7 +39,12 @@ class App extends Component {
           <Route path="/listingSearch" element={<ListingSearch />} />
           <Route path="/application" element={<ApplicationInfo />} />
         </Routes>
-      <Header placeholder={"Search for housing"} />
+      <Header placeholder={"Search for housing"} showSignup={this.hideComponent}/>
+      <div>
+          { this.state.showSignUp ? <div>
+            <SignUp dismissSignup={this.hideComponent}/> 
+            </div>: null }
+          </div>
         <main className="flex">
         <section className="flex-grow pt-14 px-6">
           <p className="text-xs">

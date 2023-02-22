@@ -3,12 +3,12 @@ import SignUpForm from "./SignUpForm.js";
 //const axios = require("axios");
 const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
+
 const zxcvbn = require("zxcvbn");
 
 export default class SignUpContainer extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       errors: {},
       user: {
@@ -18,7 +18,8 @@ export default class SignUpContainer extends Component {
       },
       btnTxt: "show",
       type: "password",
-      score: "0"
+      score: "0",
+      dismissSignup: false
     };
 
     this.pwMask = this.pwMask.bind(this);
@@ -62,10 +63,8 @@ export default class SignUpContainer extends Component {
       );
     }
   }
-
   
   submitSignup(user) {
-    console.log(user)
     // var params = { landlord_checkbox: user.landlord_checkbox, password: user.pw, email: user.email };
     /* TODO:  Connect to our server
     axios
@@ -120,10 +119,11 @@ export default class SignUpContainer extends Component {
 
   render() {
     return (
-      <div ref={this.props.ref}>
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 999 }}>
           <SignUpForm
+          dismissSignup={this.props.dismissSignup}
           onSubmit={this.validateForm}
+          onShow={this.props.show}
           onChange={this.handleChange}
           onPwChange={this.pwHandleChange}
           errors={this.state.errors}
@@ -133,7 +133,6 @@ export default class SignUpContainer extends Component {
           type={this.state.type}
           pwMask={this.pwMask}
         />
-        </div>
       </div>
     );
   }

@@ -2,11 +2,12 @@ import React from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import PasswordStr from "./PasswordStr";
+import CloseButton from 'react-bootstrap/CloseButton';
 import "./style.css";
 
 const SignUpForm = ({
-  history,
   onSubmit,
+  dismissSignup,
   onChange,
   errors,
   user,
@@ -16,11 +17,14 @@ const SignUpForm = ({
   pwMask,
   onPwChange
 }) => {
+
   return (
     <div className="loginBox">
+      <div style={{display: "flex", justifyContent: 'flex-end'}}>
+            <CloseButton style ={{ alignSelf: 'flex-end' }} onClick={dismissSignup}/>
+      </div>
       <h1>Sign Up</h1>
       {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
-
       <form onSubmit={onSubmit}>
         <div className="signUpFields">
         <TextField
