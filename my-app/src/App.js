@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Switch, Routes, 
   Route, Navigate, Redirect} from "react-router-dom";
 import Listings from './containers/landlord/listings';
+import ListingInfo from './containers/info/listingInfo';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       </header> */}
       {/* <div>Here</div> */}
       <Listings />
+      <ListingInfo />
     </div>
   );
 }
