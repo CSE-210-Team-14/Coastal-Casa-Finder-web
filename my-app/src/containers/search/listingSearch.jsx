@@ -23,12 +23,17 @@ const ListingSearch = () => {
                     <p className="property-text">Distance from Property: </p>
                     <p className="property-entry">1 mile</p>
                 </div>
-
+                <div className="property-edit">
+                    <p className="property-text">Sort By: </p>
+                    <button>Relevance</button>
+                    <button>Price Lowest</button>
+                    <button>Price Highest</button>
+                </div>
+            </div>
             <div>
                 <button className="edit-button">Search</button>
             </div>
             
-            </div>
         </>
     );
 }
