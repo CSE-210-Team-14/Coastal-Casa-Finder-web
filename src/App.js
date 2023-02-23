@@ -68,7 +68,8 @@ class App extends Component {
             ))}
           </div>
         </section>
-        <div className="box hidden xl:inline-flex xl:min-w-[800px]">
+        <div className="box hidden xl:inline-flex xl:min-w-[0px]">
+          {/* a potential map component or detail list view should be here */}
         </div>
       </main>
       </div>
