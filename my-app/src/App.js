@@ -24,8 +24,14 @@ function App() {
         </a>
       </header> */}
       {/* <div>Here</div> */}
-      <Listings />
-      <ListingInfo />
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Listings} />
+          <Route path='/listingInfo' component={ListingInfo} />
+          <Route path='/listingSearch' component={ListingSearch} />
+        </Switch>
+      </Router>
+      
     </div>
   );
 }
