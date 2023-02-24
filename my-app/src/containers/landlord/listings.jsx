@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Listing from "./listing";
 import "./listings.scss";
+import { Link } from "react-router-dom";
 
 const Listings = () => {
   const listingData = [
