@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./listingInfo.scss"
+import Listing from '../landlord/listing'
 
 const ListingInfo = () => {
 
