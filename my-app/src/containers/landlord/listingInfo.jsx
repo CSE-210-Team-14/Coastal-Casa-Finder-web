@@ -1,23 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./listingInfo.scss"
-import Listing from '../landlord/listing'
+import ReactDOM from 'react-dom/client';
+import "./listingInfo.scss";
+import {useLocation } from "react-router-dom";
 
 const ListingInfo = () => {
 
-    const listingData = [{
-        id: 1,
-        name: "ABC",
-        price: "100",
-        desc: "Blah",
-        amenities: "AC",
-        city: "San Diego",
-        bedroom: "2",
-        bathroom: "2",
-        pic: "https://www.bhg.com/thmb/0Fg0imFSA6HVZMS2DFWPvjbYDoQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
-      }]
+    const location = useLocation();
 
-    const currentListing = listingData[0]
+    const currentListing = location.state;
 
     return (
         <>

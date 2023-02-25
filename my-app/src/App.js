@@ -1,12 +1,11 @@
 import './App.scss';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Switch, Routes, 
-  Route, Navigate, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Listings from './containers/landlord/listings';
 import ListingInfo from './containers/landlord/listingInfo';
 import ListingSearch from './containers/landlord/listingSearch';
-import Application from './containers/landlord/application';
+import ApplicationInfo from './containers/landlord/applicationInfo';
 
 
 function App() {
@@ -32,7 +31,7 @@ function App() {
           <Route exact path='/' component={Listings} />
           <Route path='/listingInfo' component={ListingInfo} />
           <Route path='/listingSearch' component={ListingSearch} />
-          <Route path='/application' component={Application} />
+          <Route path='/application' component={ApplicationInfo} />
         </Switch>
       </Router>
       
