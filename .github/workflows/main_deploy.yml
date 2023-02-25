@@ -54,4 +54,5 @@ jobs:
           docker stop coastal_casa_finder_web
           docker rm coastal_casa_finder_web
           docker run -d -p 3000:80 --name coastal_casa_finder_web ${{ secrets.DOCKER_USERNAME }}/coastal_casa_finder_web
+          docker image prune -a -f
           echo "All commands are done, check http://18.196.64.140:3000 for this deployment"
