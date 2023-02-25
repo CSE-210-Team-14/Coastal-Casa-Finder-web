@@ -66,7 +66,7 @@ const Listings = () => {
       <h2 className="heading-main">Landlord's Listings</h2>
       <div className="listing">
         <div className="listings-main">
-          <p className="listing-heading">Current Applications</p>
+          <p className="listing-heading">Current Listings</p>
           <p className="num-listing">{landlordListings.length} Listings</p>
           {landlordListings}
         </div>
