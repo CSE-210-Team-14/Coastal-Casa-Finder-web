@@ -1,12 +1,11 @@
-import './App.scss';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Listings from './containers/landlord/listings';
-import ListingInfo from './containers/landlord/listingInfo';
-import ListingSearch from './containers/landlord/listingSearch';
-import ApplicationInfo from './containers/landlord/applicationInfo';
-
+import "./App.scss";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Listings from "./containers/landlord/listings";
+import ListingInfo from "./containers/landlord/listingInfo";
+import ListingSearch from "./containers/landlord/listingSearch";
+import ApplicationInfo from "./containers/landlord/applicationInfo";
 
 function App() {
   return (
@@ -26,15 +25,12 @@ function App() {
         </a>
       </header> */}
       {/* <div>Here</div> */}
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Listings} />
-          <Route path='/listingInfo' component={ListingInfo} />
-          <Route path='/listingSearch' component={ListingSearch} />
-          <Route path='/application' component={ApplicationInfo} />
-        </Switch>
-      </Router>
-      
+      <Routes>
+        <Route exact path="/" component={Listings} />
+        <Route path="/listingInfo" component={ListingInfo} />
+        <Route path="/listingSearch" component={ListingSearch} />
+        <Route path="/application" component={ApplicationInfo} />
+      </Routes>
     </div>
   );
 }
