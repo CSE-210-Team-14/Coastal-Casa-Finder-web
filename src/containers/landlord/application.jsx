@@ -1,7 +1,6 @@
 import React from "react";
 import "./application.scss";
 import { Link } from "react-router-dom";
-import ReactDOM from 'react-dom/client';
 
 
 const Application = (props) => {

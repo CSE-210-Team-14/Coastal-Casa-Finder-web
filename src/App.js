@@ -27,18 +27,18 @@ function App() {
         </a>
       </header> */}
       {/* <div>Here</div> */}
-      <Routes>
-        <Route exact path="/" component={Listings} />
-        <Route path="/listingInfo" component={ListingInfo} />
-        <Route path="/listingSearch" component={ListingSearch} />
-        <Route path="/application" component={ApplicationInfo} />
-      </Routes>
       <div>
         <div>
           <Button onClick={() => setShowSignUp(true)}>Sign Up</Button>
         </div>
         {showSignUp && <SignUp />}
       </div>
+      <Routes>
+        <Route exact path="/" element={<Listings />} />
+        <Route path="/listingInfo" element={<ListingInfo />} />
+        <Route path="/listingSearch" element={<ListingSearch />} />
+        <Route path="/application" element={<ApplicationInfo />} />
+      </Routes>
     </div>
   );
 }

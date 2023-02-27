@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import "./application.scss";
 import {useLocation } from "react-router-dom";
 

@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from 'react-dom/client';
 import "./listing.scss";
 import { Link } from "react-router-dom";
 
