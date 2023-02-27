@@ -65,13 +65,13 @@ const Listings = () => {
   return (
     <>
       <h2 className="heading-main">Landlord's Listings</h2>
-      <div className="listing">
+      <div>
         <div>
-          <div>
-            <Button onClick={() => setShowSignUp(!showSignUp)}>Sign Up</Button>
-          </div>
-          {showSignUp && <SignUp />}
+          <Button onClick={() => setShowSignUp(!showSignUp)}>Sign Up</Button>
         </div>
+        {showSignUp && <SignUp />}
+      </div>
+      <div className="listing">
         <div className="listings-main">
           <p className="listing-heading">Current Listings</p>
           <p className="num-listing">{landlordListings.length} Listings</p>

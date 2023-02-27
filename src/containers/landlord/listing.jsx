@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./listing.scss";
-import {useNavigate} from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import fetchingData from "../../fetchingData";
+import axios from "axios";
 
 const Listing = (props) => {
   //console.log(props.name);
@@ -15,13 +16,28 @@ const Listing = (props) => {
     bedroom: props.bedroom,
     bathroom: props.bathroom,
     pic: props.pic,
-  }
+  };
 
   const navigate = useNavigate();
 
   const toListingInfo = () => {
-    navigate('/listingInfo', {state: data});
-  }
+    navigate("/listingInfo", { state: data });
+  };
+
+  const [fetchDataFromDB, setFetchDataFromDB] = useState(true);
+
+  useEffect(() => {
+    if (fetchDataFromDB) {
+      axios
+        .get("http://18.196.64.140:8080/listings/alllistings/")
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response.status);
+          setFetchDataFromDB(false);
+        });
+    }
+    // console.log(result);
+  }, [fetchDataFromDB]);
 
   return (
     <div className="listing-main">
@@ -31,7 +47,14 @@ const Listing = (props) => {
       <p>{props.name}</p>
       <p>{props.bedroom}</p>
       <p>{props.bathroom}</p>
-      <button type="button" onClick={()=>{toListingInfo()}}>Edit Listing</button>
+      <button
+        type="button"
+        onClick={() => {
+          toListingInfo();
+        }}
+      >
+        Edit Listing
+      </button>
     </div>
   );
 };
