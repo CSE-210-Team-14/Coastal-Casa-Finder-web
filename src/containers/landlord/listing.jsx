@@ -1,6 +1,6 @@
 import React from "react";
 import "./listing.scss";
-import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 
 const Listing = (props) => {
@@ -17,6 +17,12 @@ const Listing = (props) => {
     pic: props.pic,
   }
 
+  const navigate = useNavigate();
+
+  const toListingInfo = () => {
+    navigate('/listingInfo', {state: data});
+  }
+
   return (
     <div className="listing-main">
       <img src={props.pic} alt=""></img>
@@ -25,9 +31,7 @@ const Listing = (props) => {
       <p>{props.name}</p>
       <p>{props.bedroom}</p>
       <p>{props.bathroom}</p>
-      <Link to={{pathname:'/listingInfo', state: data}}>
-        <button type="button">Edit Listing</button>
-      </Link>
+      <button type="button" onClick={()=>{toListingInfo()}}>Edit Listing</button>
     </div>
   );
 };

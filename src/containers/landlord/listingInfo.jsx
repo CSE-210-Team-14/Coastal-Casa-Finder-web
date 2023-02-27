@@ -1,6 +1,6 @@
 import React from "react";
 import "./listingInfo.scss";
-import {useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 const ListingInfo = () => {
 

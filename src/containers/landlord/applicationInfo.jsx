@@ -1,6 +1,6 @@
 import React from "react";
 import "./application.scss";
-import {useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 
 const ApplicationInfo = () => {

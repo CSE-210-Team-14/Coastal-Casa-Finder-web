@@ -1,11 +1,10 @@
 import React from "react";
 import "./application.scss";
-import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 
 const Application = (props) => {
 
-    //console.log(props.name);
   const data = {
     id: props.id,
     name: props.name,
@@ -16,6 +15,12 @@ const Application = (props) => {
     pic: props.pic,
   }
 
+  const navigate = useNavigate();
+
+  const toApplicationInfo = () => {
+    navigate('/application', {state: data});
+  }
+
   return (
     <div className="listing-main">
       <img src={props.pic} alt=""></img>
@@ -23,9 +28,7 @@ const Application = (props) => {
       <p>{props.move}</p>
       <p>{props.residents}</p>
       <p>{props.score}</p>
-      <Link to={{pathname:'/application', state: data}}>
-        <button type="button">Edit Application</button>
-      </Link>
+      <button type="button" onClick={()=>{toApplicationInfo()}}>Edit Application</button>
     </div>
   );
 
