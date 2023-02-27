@@ -1,0 +1,136 @@
+.listing-name {
+    box-sizing: border-box;
+    border: 1px solid #918686;
+    border-radius: 8px;
+    width: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 136%;
+    /* or 33px */
+    
+    text-align: center;
+    
+    color: #3E4958;
+}
+
+.listing-img {
+    width: 500px;
+    height: 300px;
+    border-radius: 20px;
+
+    /* Inside auto layout */
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.desc-box {
+    box-sizing: border-box;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+
+    width: 711px;
+    height: auto;
+
+    border: 1px solid #918686;
+    border-radius: 8px;
+}
+
+.listing-categ {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 21px;
+    /* identical to box height */
+
+
+    color: #000000;
+}
+
+.categ-text {
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 136%;
+    /* or 19px */
+
+
+    color: #000000;
+}
+
+.property-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    width: 191px;
+    height: 22px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+
+    color: #000000;
+
+}
+
+.property-entry {
+    box-sizing: border-box;
+    width: 289px;
+    height: 31px;
+    border: 1px solid #A9A9A9;
+    border-radius: 8px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+
+    color: #000000;
+    text-align: center;
+}
+
+.property-edit {
+    display: flex;
+}
+
+.edit-button {
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+
+    background: rgba(219, 219, 254, 0.5);
+    border-radius: 30px;
+    padding: 10px;
+    margin: 20px;
+
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 149.8%;
+    /* or 36px */
+
+    text-align: center;
+
+    color: #3E4958;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}

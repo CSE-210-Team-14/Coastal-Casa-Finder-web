@@ -1,0 +1,65 @@
+.listing {
+  display: flex;
+}
+
+.listings-main {
+  width: 50%;
+  height: 100%;
+  left: 20px;
+  top: 20px;
+
+  background: #0000 !important;
+  border-radius: 20px;
+}
+
+.listings-pending {
+  width: 50%;
+  height: 100%;
+  left: 20px;
+  top: 20px;
+
+  background: #0000 !important;
+  border-radius: 20px;
+}
+
+.heading-main {
+  margin: 40px 20px 20px 20px;
+  padding: 20px;
+  position: relative;
+
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 149.8%;
+  /* or 54px */
+
+  color: #8D8686;
+}
+
+.listing-heading {
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 28px;
+  /* identical to box height, or 78% */
+
+  letter-spacing: 0.2px;
+
+  color: #3E4958;
+}
+
+.num-listing {
+  font-family: 'Abel';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 149.8%;
+  /* identical to box height, or 24px */
+
+  text-align: center;
+
+  color: #3E4958;
+
+}
