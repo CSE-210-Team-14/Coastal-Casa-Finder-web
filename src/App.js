@@ -1,13 +1,15 @@
 import "./App.scss";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import SignUp from "./SignUpContainer";
+import { Routes, Route } from "react-router-dom";
 import Listings from "./containers/landlord/listings";
 import ListingInfo from "./containers/landlord/listingInfo";
 import ListingSearch from "./containers/landlord/listingSearch";
 import ApplicationInfo from "./containers/landlord/applicationInfo";
 
 function App() {
+  const [showSignUp, setShowSignUp] = useState(false);
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -31,6 +33,12 @@ function App() {
         <Route path="/listingSearch" component={ListingSearch} />
         <Route path="/application" component={ApplicationInfo} />
       </Routes>
+      <div>
+        <div>
+          <Button onClick={() => setShowSignUp(true)}>Sign Up</Button>
+        </div>
+        {showSignUp && <SignUp />}
+      </div>
     </div>
   );
 }
