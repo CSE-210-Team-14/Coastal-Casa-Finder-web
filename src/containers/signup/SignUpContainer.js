@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import SignUpForm from "./SignUpForm.js";
-//const axios = require("axios");
 const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
-
 const zxcvbn = require("zxcvbn");
 
 export default class SignUpContainer extends Component {

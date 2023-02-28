@@ -8,7 +8,7 @@ import React, { Component } from "react";
 import Header from "./components/Header.tsx";
 import InfoCard from "./components/InfoCard.tsx";
 import Button from "@mui/material/Button";
-import SignUp from "./SignUpContainer";
+import SignUp from "./containers/signup/SignUpContainer";
 
 class App extends Component {
   
@@ -40,11 +40,12 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div className="App">
+              
       <Header placeholder={"Search for housing"} showSignup={this.hideComponent}/>
-      <Button onClick={() => this.hideSignup() }>Sign Up</Button>
-      { this.state.showSignUp ? <SignUp dismissSignup={this.hideSignup}/>  : null}
       <div>
           { this.state.showLandlordListing ? <div>
+            <Button onClick={() => this.hideSignup() }>Sign Up</Button>
+            { this.state.showSignUp ? <div><SignUp dismissSignup={this.hideSignup}/>  </div>: null}
             <Routes>
                 <Route exact path="/" element={<Listings />} />
                 <Route path="/listingInfo" element={<ListingInfo />} />

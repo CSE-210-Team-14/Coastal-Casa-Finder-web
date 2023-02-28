@@ -29,6 +29,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
       <img
           src={img}
           className="rounded-2xl"
+          alt="house"
         />
       </div>
       <div className="flex flex-col flex-grow pl-5">

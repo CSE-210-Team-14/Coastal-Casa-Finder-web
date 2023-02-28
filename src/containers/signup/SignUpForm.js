@@ -2,7 +2,6 @@ import React from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import PasswordStr from "./PasswordStr";
-import CloseButton from 'react-bootstrap/CloseButton';
 import "./style.css";
 
 const SignUpForm = ({
@@ -21,7 +20,9 @@ const SignUpForm = ({
   return (
     <div className="loginBox">
       <div style={{display: "flex", justifyContent: 'flex-end'}}>
-            <CloseButton style ={{ alignSelf: 'flex-end' }} onClick={dismissSignup}/>
+          <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={dismissSignup}>
+                <span aria-hidden="true">&times;</span>
+          </button>
       </div>
       <h1>Sign Up</h1>
       {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
