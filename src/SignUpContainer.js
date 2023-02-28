@@ -87,7 +87,6 @@ export default class SignUpContainer extends Component {
 
   validateForm(event) {
     event.preventDefault();
-    console.log(this.state.user)
     var payload = validateSignUpForm(this.state.user);
     if (payload.success) {
       this.setState({
