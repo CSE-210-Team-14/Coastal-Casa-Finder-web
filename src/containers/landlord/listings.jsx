@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Listing from "./listing";
 import Application from "./application";
 import "./listings.scss";
-import Button from "@mui/material/Button";
-import SignUp from "../../SignUpContainer";
+
 
 const Listings = () => {
   const listingData = [
@@ -51,7 +50,6 @@ const Listings = () => {
       pic: "https://www.bhg.com/thmb/0Fg0imFSA6HVZMS2DFWPvjbYDoQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
     },
   ];
-  const [showSignUp, setShowSignUp] = useState(false);
   const landlordListings = [];
   for (const listing of listingData) {
     landlordListings.push(<Listing {...listing} />);
@@ -66,12 +64,6 @@ const Listings = () => {
     <>
       <h2 className="heading-main">Landlord's Listings</h2>
       <div className="listing">
-        <div>
-          <div>
-            <Button onClick={() => setShowSignUp(!showSignUp)}>Sign Up</Button>
-          </div>
-          {showSignUp && <SignUp />}
-        </div>
         <div className="listings-main">
           <p className="listing-heading">Current Listings</p>
           <p className="num-listing">{landlordListings.length} Listings</p>

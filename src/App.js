@@ -1,27 +1,34 @@
 import "./App.scss";
-import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Listings from "./containers/landlord/listings";
 import ListingInfo from "./containers/landlord/listingInfo";
 import ListingSearch from "./containers/landlord/listingSearch";
 import ApplicationInfo from "./containers/landlord/applicationInfo";
 import React, { Component } from "react";
-import SignUp from "./SignUpContainer";
 import Header from "./components/Header.tsx";
 import InfoCard from "./components/InfoCard.tsx";
+import Button from "@mui/material/Button";
+import SignUp from "./SignUpContainer";
 
 class App extends Component {
+  
   constructor() {
     super();
     this.state = {
       name: "React",
       showSignUp: false,
+      showLandlordListing: false,
     };
     this.hideComponent = this.hideComponent.bind(this);
+    this.hideSignup = this.hideSignup.bind(this);
+  }
+  
+
+  hideComponent() {
+    this.setState({ showLandlordListing: !this.state.showLandlordListing });
   }
 
-  hideComponent(name) {
-    console.log(name, 'test');
+  hideSignup() {
     this.setState({ showSignUp: !this.state.showSignUp });
   }
 
@@ -33,18 +40,18 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div className="App">
-        <Routes>
-          <Route exact path="/" element={<Listings />} />
-          <Route path="/listingInfo" element={<ListingInfo />} />
-          <Route path="/listingSearch" element={<ListingSearch />} />
-          <Route path="/application" element={<ApplicationInfo />} />
-        </Routes>
       <Header placeholder={"Search for housing"} showSignup={this.hideComponent}/>
+      <Button onClick={() => this.hideSignup() }>Sign Up</Button>
+      { this.state.showSignUp ? <SignUp dismissSignup={this.hideSignup}/>  : null}
       <div>
-          { this.state.showSignUp ? <div>
-            <SignUp dismissSignup={this.hideComponent}/> 
-            </div>: null }
-          </div>
+          { this.state.showLandlordListing ? <div>
+            <Routes>
+                <Route exact path="/" element={<Listings />} />
+                <Route path="/listingInfo" element={<ListingInfo />} />
+                <Route path="/listingSearch" element={<ListingSearch />} />
+                <Route path="/application" element={<ApplicationInfo />} />
+              </Routes>
+            </div>:
         <main className="flex">
         <section className="flex-grow pt-14 px-6">
           <p className="text-xs">
@@ -72,9 +79,12 @@ class App extends Component {
           {/* a potential map component or detail list view should be here */}
         </div>
       </main>
+        }
       </div>
+      </div>
+      
     </BrowserRouter>
   );
 }
-
-//export default App;
+}
+export default App;
