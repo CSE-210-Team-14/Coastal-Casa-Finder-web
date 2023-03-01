@@ -19,7 +19,44 @@ const ListingInfo = () => {
         else {
             setEditState(true);
             console.log("success2");
+            console.log(currentListing);
         }
+    }
+
+
+    const handleDescChange = (event) => {
+        //console.log('change detected');
+        //console.log(event.value);
+        currentListing.desc = event.value;
+        //console.log(currentListing);
+    }
+
+    const handleAmenChange = (event) => {
+        //console.log('change detected');
+        //console.log(event.value);
+        currentListing.amenities = event.value;
+        //console.log(currentListing);
+    }
+
+    const handleBedChange = (event) => {
+        //console.log('change detected');
+        //console.log(event.value);
+        currentListing.bedroom = event.value;
+        //console.log(currentListing);
+    }
+
+    const handleBathChange = (event) => {
+        //console.log('change detected');
+        //console.log(event.value);
+        currentListing.bathroom = event.value;
+        //console.log(currentListing);
+    }
+
+    const handleCityChange = (event) => {
+        //console.log('change detected');
+        //console.log(event.value);
+        currentListing.city = event.value;
+        //console.log(currentListing);
     }
 
     return (
@@ -30,25 +67,30 @@ const ListingInfo = () => {
             </div>
             <h3 className="listing-categ">About</h3>
             <div className="desc-box">
-                <EditText readonly={editState} className="categ-text" defaultValue={currentListing.desc} style={{backgroundColor: "#FFF"}}></EditText>
+                <EditText readonly={editState} className="categ-text" onSave={handleDescChange}
+                defaultValue={currentListing.desc} style={{backgroundColor: "#FFF"}}></EditText>
             </div>
             <h3 className="listing-categ">Apartment Amenities</h3>
             <div className="desc-box">
-                <EditText readonly={editState} className="categ-text" defaultValue={currentListing.amenities} style={{backgroundColor: "#FFF"}}></EditText>
+                <EditText readonly={editState} className="categ-text" onSave={handleAmenChange}
+                defaultValue={currentListing.amenities} style={{backgroundColor: "#FFF"}}></EditText>
             </div>
             <h3 className="listing-categ">Property Description</h3>
             <div className="desc-box">
                 <div className="property-edit">
                     <p className="property-text">Bedroom: </p>
-                    <EditText readonly={editState} className="property-entry" defaultValue={currentListing.bedroom} style={{backgroundColor: "#FFF"}}></EditText>
+                    <EditText readonly={editState} className="property-entry" onSave={handleBedChange}
+                    defaultValue={currentListing.bedroom} style={{backgroundColor: "#FFF"}}></EditText>
                 </div>
                 <div className="property-edit">
                     <p className="property-text">Bathroom: </p>
-                    <EditText readonly={editState} className="property-entry" defaultValue={currentListing.bathroom} style={{backgroundColor: "#FFF"}}></EditText>
+                    <EditText readonly={editState} className="property-entry" onSave={handleBathChange} 
+                    defaultValue={currentListing.bathroom} style={{backgroundColor: "#FFF"}}></EditText>
                 </div>
                 <div className="property-edit">
                     <p className="property-text">Location: </p>
-                    <EditText readonly={editState} className="property-entry" defaultValue={currentListing.city} style={{backgroundColor: "#FFF"}}></EditText>
+                    <EditText readonly={editState} className="property-entry" onSave={handleCityChange}
+                    defaultValue={currentListing.city} style={{backgroundColor: "#FFF"}}></EditText>
                 </div>
             </div>
             <div>
