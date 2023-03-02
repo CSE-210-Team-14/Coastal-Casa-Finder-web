@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { EditText, EditTextarea } from 'react-edit-text';
+import React, {useState} from "react";
+import { EditText } from 'react-edit-text';
 import "./listingInfo.scss";
 import {useLocation} from "react-router-dom";
 
@@ -12,7 +12,7 @@ const ListingInfo = () => {
     const [editState, setEditState] = useState(true);
 
     const handleClick = () => {
-        if (editState == true) {
+        if (editState === true) {
             setEditState(false);
             console.log("success");
         }

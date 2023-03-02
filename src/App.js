@@ -9,6 +9,9 @@ import Header from "./components/Header.tsx";
 import InfoCard from "./components/InfoCard.tsx";
 import Button from "@mui/material/Button";
 import SignUp from "./containers/signup/SignUpContainer";
+import SlidingPane from "react-sliding-pane";
+import SlidingPaneView from "./containers/NavBar/SlidingPaneView";
+import "react-sliding-pane/dist/react-sliding-pane.css";
 
 class App extends Component {
   
@@ -18,11 +21,12 @@ class App extends Component {
       name: "React",
       showSignUp: false,
       showLandlordListing: false,
+      showPane: false
     };
     this.hideComponent = this.hideComponent.bind(this);
     this.hideSignup = this.hideSignup.bind(this);
+    this.showPane = this.hidePane.bind(this);
   }
-  
 
   hideComponent() {
     this.setState({ showLandlordListing: !this.state.showLandlordListing });
@@ -30,6 +34,10 @@ class App extends Component {
 
   hideSignup() {
     this.setState({ showSignUp: !this.state.showSignUp });
+  }
+
+  hidePane() {
+    this.setState({showPane: !this.state.showPane})
   }
 
   render() {
