@@ -24,13 +24,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   const [price, setPrice] = useState<any>(1000);
   const [dist, setDist] = useState<any>(10);
 
-  const handleSelect = (ranges: any) => {
-    setStartDate(ranges.selection.startDate);
-  };
-
-  const selectionRange = {
-    startDate: startDate,
-    key: "selection",
+  const handleSelect = (startDate: any) => {
+    setStartDate(startDate);
   };
 
   const resetInput = () => {
@@ -38,6 +33,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   };
 
   const search = () => {
+    //TODO add backend call
   };
   return (
     <header
@@ -45,6 +41,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
       <div className="relative flex items-center h-10 cursor-pointer my-auto">
         <img
           src={require('./cc.png')} style={{width: 80, height: 80}}
+          alt="company logo"
         />
       </div>
 
@@ -58,7 +55,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         />
         <SearchIcon
           className="hidden md:inline-flex h-8 bg-blue-400 text-white rounded-full
-        p-2 cursor-pointer md:mx-2"
+        p-2 cursor-pointer md:mx-2" onChange={search}
         />
       </div>
       <div className="flex items-center space-x-4 justify-end text-gray-500">
@@ -77,7 +74,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
             Radius (miles)
             <Slider
             size="small"
-            defaultValue={20}
+            defaultValue={dist}
             aria-label="Small"
             valueLabelDisplay="auto"
             onChange={setDist}
