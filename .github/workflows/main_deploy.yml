@@ -56,3 +56,11 @@ jobs:
           docker run -d -p 3000:80 --name coastal_casa_finder_web ${{ secrets.DOCKER_USERNAME }}/coastal_casa_finder_web
           docker image prune -a -f
           echo "All commands are done, check http://18.196.64.140:3000 for this deployment"
+
+    - name: Send Slack Workflow Result
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: workflow-results
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_USERNAME: Github-Bot
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
