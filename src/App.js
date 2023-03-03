@@ -12,6 +12,7 @@ import SignUp from "./containers/signup/SignUpContainer";
 import SlidingPane from "react-sliding-pane";
 import SlidingPaneView from "./containers/NavBar/SlidingPaneView";
 import "react-sliding-pane/dist/react-sliding-pane.css";
+import UserView from "./containers/user/userView";
 
 class App extends Component {
   
@@ -59,6 +60,7 @@ class App extends Component {
                 <Route path="/listingInfo" element={<ListingInfo />} />
                 <Route path="/listingSearch" element={<ListingSearch />} />
                 <Route path="/application" element={<ApplicationInfo />} />
+                <Route path="/userInfo" element={<UserView />}/>
               </Routes>
             </div>:
         <main className="flex">
