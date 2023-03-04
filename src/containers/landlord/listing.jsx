@@ -30,9 +30,8 @@ const Listing = (props) => {
     if (fetchDataFromDB) {
       axios
         .get("http://18.196.64.140:8080/listings/alllistings/")
-        .then((response) => response.json())
         .then((response) => {
-          console.log(response.status);
+          console.log(response);
           setFetchDataFromDB(false);
         });
     }

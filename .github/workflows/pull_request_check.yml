@@ -19,3 +19,12 @@ jobs:
       - name: Build and test
         run: |
           yarn test --watchAll=false --coverage --maxWorkers=4
+      
+
+      - name: Send Slack Workflow Result
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: workflow-results
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_USERNAME: Github-Bot
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
