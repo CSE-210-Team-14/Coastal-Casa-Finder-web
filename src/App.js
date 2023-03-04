@@ -19,11 +19,9 @@ class App extends Component {
       name: "React",
       showSignUp: false,
       showLandlordListing: false,
-      showPane: false
     };
     this.hideComponent = this.hideComponent.bind(this);
     this.hideSignup = this.hideSignup.bind(this);
-    this.showPane = this.hidePane.bind(this);
   }
 
   hideComponent() {
@@ -32,10 +30,6 @@ class App extends Component {
 
   hideSignup() {
     this.setState({ showSignUp: !this.state.showSignUp });
-  }
-
-  hidePane() {
-    this.setState({showPane: !this.state.showPane})
   }
 
   render() {
