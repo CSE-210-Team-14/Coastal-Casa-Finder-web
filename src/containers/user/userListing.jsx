@@ -3,7 +3,7 @@ import "./userListing.scss";
 
 const UserListing = (props) => {
   //console.log(props.name);
-  const data = {
+  /*const data = {
     id: props.id,
     name: props.name,
     desc: props.desc,
@@ -14,6 +14,7 @@ const UserListing = (props) => {
     bathroom: props.bathroom,
     pic: props.pic,
   }
+  */
 
   const displayListing = (props) => {
 
