@@ -10,7 +10,7 @@ import InfoCard from "./components/InfoCard.tsx";
 import Button from "@mui/material/Button";
 import SignUp from "./containers/signup/SignUpContainer";
 import SlidingPane from "react-sliding-pane";
-import SlidingPaneView from "./containers/NavBar/SlidingPaneView";
+//import SlidingPaneView from "./containers/NavBar/SlidingPaneView";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 import UserView from "./containers/user/userView";
 
