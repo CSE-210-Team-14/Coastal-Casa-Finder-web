@@ -1,8 +1,8 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Listing from "./listing";
 import Application from "./application";
 import "./listings.scss";
-import axios from "axios";
 
 const Listings = () => {
   const [fetchDataFromDB, setFetchDataFromDB] = useState(true);
