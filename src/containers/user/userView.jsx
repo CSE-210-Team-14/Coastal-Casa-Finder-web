@@ -1,53 +1,56 @@
-import React from "react";
-import './userView.scss';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./userView.scss";
 import UserListing from "./userListing";
 
 const UserView = () => {
-    const selectedListings = [
-        {
-            id: 1,
-            name: "ABC",
-            desc: "Apartment",
-            amenities: "A/C",
-            price: "100",
-            city: "San Diego",
-            bedroom: "2",
-            bathroom: "2",
-            pic: "https://www.bhg.com/thmb/0Fg0imFSA6HVZMS2DFWPvjbYDoQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
-        },
-        {
-            id: 2,
-            name: "XYZ",
-            desc: "Apartment 2",
-            amenities: "A/C",
-            price: "100",
-            city: "San Diego",
-            bedroom: "3",
-            bathroom: "2",
-            pic: "https://www.bhg.com/thmb/0Fg0imFSA6HVZMS2DFWPvjbYDoQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
-        }
-    ]
-
-    const userListings = [];
-        for (const listing of selectedListings) {
-            userListings.push(<UserListing {...listing} />);
+  const [fetchAllData, setFetchAllData] = useState(true);
+  const [dataFromDB, setDataFromDB] = useState([]);
+  useEffect(() => {
+    if (fetchAllData) {
+      axios
+        .get(`http://18.196.64.140:8080/listings/alllistings`)
+        .then((response) => {
+          console.log(response);
+          setDataFromDB(response.data.data);
+          setFetchAllData(false);
+        });
     }
+  }, [fetchAllData]);
 
+  const userData = [];
 
-    return (
-        <>
-            <h2 className="text-3xl font-semibold mt-2 mb-6">User Listings</h2>
-            <div>
-                <div className="listings-main">
-                    <p className="text-3xl font-semibold mt-2 mb-6">Selected Listings</p>
-                    <p className="num-listing">{userListings.length} Listings</p>
-                </div>
-                <div>
-                    {userListings}
-                </div>
-            </div>
-        </>
-    )
-}
+  for (const entry of dataFromDB) {
+    userData.push({
+      id: entry.listing.id,
+      name: entry.listing.description,
+      desc: entry.listing.description,
+      amenities: entry.listing.amenities,
+      price: entry.listing.price,
+      // city: entry.listing.id,
+      bedroom: entry.listing.num_bathrooms,
+      bathroom: entry.listing.num_bedrooms,
+      pic: entry.images[0].image_data,
+    });
+  }
+
+  const userListings = [];
+  for (const listing of userData) {
+    userListings.push(<UserListing {...listing} />);
+  }
+
+  return (
+    <>
+      <h2 className="text-3xl font-semibold mt-2 mb-6">User Listings</h2>
+      <div>
+        <div className="listings-main">
+          <p className="text-3xl font-semibold mt-2 mb-6">Selected Listings</p>
+          <p className="num-listing">{userListings.length} Listings</p>
+        </div>
+        <div>{userListings}</div>
+      </div>
+    </>
+  );
+};
 
 export default UserView;
