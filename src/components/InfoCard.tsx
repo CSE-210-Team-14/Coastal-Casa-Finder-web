@@ -42,7 +42,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
         <p className="pt-2 text-sm text-gray-500 flex-grow">{description}</p>
         <div className="flex justify-between">
           <p className="flex items-center">
-            <StarIcon className="h-5 text-red-400" />
+            <StarIcon className="h-5 text-blue-400" />
             {star}
           </p>
           <div>

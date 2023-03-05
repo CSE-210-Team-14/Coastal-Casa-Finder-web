@@ -41,7 +41,7 @@ class App extends Component {
       <BrowserRouter>
       <div className="App">
               
-      <Header placeholder={"Search for housing"} showSignup={this.hideComponent}/>
+      <Header placeholder={"Search for location"} showSignup={this.hideComponent}/>
       <div>
           { this.state.showLandlordListing ? <div>
             <Button onClick={() => this.hideSignup() }>Sign Up</Button>
