@@ -11,7 +11,11 @@ const ListingInfo = () => {
     <>
       <h2 className="listing-name">{currentListing.name}</h2>
       <div className="listing">
-        <img className="listing-img" src={currentListing.pic} alt=""></img>
+        <img
+          className="listing-img"
+          src={`data:image/jpeg;base64,${currentListing.pic}`}
+          alt=""
+        />
       </div>
       <h3 className="listing-categ">About</h3>
       <div className="desc-box">

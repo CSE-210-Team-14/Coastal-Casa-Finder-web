@@ -24,7 +24,7 @@ const Listing = (props) => {
 
   return (
     <div className="listing-main">
-      <img src={props.pic} alt=""></img>
+      <img src={`data:image/jpeg;base64,${props.pic}`} alt="" />
       <p>{props.name}</p>
       <p>{props.price}</p>
       <p>{props.name}</p>

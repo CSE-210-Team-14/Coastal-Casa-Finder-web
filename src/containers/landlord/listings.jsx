@@ -15,7 +15,7 @@ const Listings = () => {
     if (fetchDataFromDB) {
       axios
         .get(
-          `http://18.196.64.140:8080/listings/?landlord_email=${landlordEmail[0]}%40${landlordEmail[1]}`
+          `http://18.196.64.140:8080/listings/${landlordEmail[0]}%40${landlordEmail[1]}`
         )
         .then((response) => {
           setDataFromDB(response.data.data);
@@ -24,6 +24,7 @@ const Listings = () => {
     }
   }, [fetchDataFromDB, landlordEmail]);
 
+  console.log(dataFromDB);
   const listingData = [];
 
   for (const entry of dataFromDB) {
