@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./listing.scss";
 import { useNavigate } from "react-router-dom";
-import fetchingData from "../../fetchingData";
-import axios from "axios";
 
 const Listing = (props) => {
   //console.log(props.name);
@@ -12,7 +10,7 @@ const Listing = (props) => {
     desc: props.desc,
     amenities: props.amenities,
     price: props.price,
-    city: props.city,
+    // city: props.city,
     bedroom: props.bedroom,
     bathroom: props.bathroom,
     pic: props.pic,
@@ -24,23 +22,9 @@ const Listing = (props) => {
     navigate("/listingInfo", { state: data });
   };
 
-  const [fetchDataFromDB, setFetchDataFromDB] = useState(true);
-
-  useEffect(() => {
-    if (fetchDataFromDB) {
-      axios
-        .get("http://18.196.64.140:8080/listings/alllistings/")
-        .then((response) => {
-          console.log(response);
-          setFetchDataFromDB(false);
-        });
-    }
-    // console.log(result);
-  }, [fetchDataFromDB]);
-
   return (
     <div className="listing-main">
-      <img src={props.pic} alt=""></img>
+      <img src={`data:image/jpeg;base64,${props.pic}`} alt="" />
       <p>{props.name}</p>
       <p>{props.price}</p>
       <p>{props.name}</p>
