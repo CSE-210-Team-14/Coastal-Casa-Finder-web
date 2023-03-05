@@ -64,3 +64,4 @@ jobs:
         SLACK_COLOR: ${{ job.status }}
         SLACK_USERNAME: Github-Bot
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+      if: always()
