@@ -1,44 +1,100 @@
-import React from "react";
-import "./listing.scss";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Listing from "./listing";
+import Application from "./application";
+import "./listings.scss";
+import axios from "axios";
 
-const Listing = (props) => {
-  const data = {
-    id: props.id,
-    name: props.name,
-    desc: props.desc,
-    amenities: props.amenities,
-    price: props.price,
-    // city: props.city,
-    bedroom: props.bedroom,
-    bathroom: props.bathroom,
-    pic: props.pic,
-  };
+const Listings = () => {
+  const [fetchDataFromDB, setFetchDataFromDB] = useState(true);
+  const [dataFromDB, setDataFromDB] = useState([]);
 
-  const navigate = useNavigate();
+  let currentEmail = "email@email.com";
+  const landlordEmail = currentEmail.split("@");
 
-  const toListingInfo = () => {
-    navigate("/listingInfo", { state: data });
-  };
+  useEffect(() => {
+    if (fetchDataFromDB) {
+      axios
+        .get(
+          `http://18.196.64.140:8080/listings/?landlord_email=${landlordEmail[0]}%40${landlordEmail[1]}`
+        )
+        .then((response) => {
+          setDataFromDB(response.data.data);
+          setFetchDataFromDB(false);
+        });
+    }
+  }, [fetchDataFromDB, landlordEmail]);
+
+  const listingData = [];
+
+  for (const entry of dataFromDB) {
+    listingData.push({
+      id: entry.listing.id,
+      name: entry.listing.description,
+      desc: entry.listing.description,
+      amenities: entry.listing.amenities,
+      price: entry.listing.price,
+      // city: entry.listing.id,
+      bedroom: entry.listing.num_bathrooms,
+      bathroom: entry.listing.num_bedrooms,
+      pic: entry.images[0].image_data,
+    });
+  }
+
+  // console.log(listingData);
+
+  const applicationData = [
+    {
+      id: 1,
+      name: "Marcus",
+      message: "I want house",
+      move: "1/1/1",
+      residents: 1,
+      score: 700,
+      pic: "https://www.bhg.com/thmb/0Fg0imFSA6HVZMS2DFWPvjbYDoQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
+    },
+    {
+      id: 2,
+      name: "Jon",
+      message: "I want place",
+      move: "2/2/2",
+      residents: 1,
+      score: 700,
+      pic: "https://www.bhg.com/thmb/0Fg0imFSA6HVZMS2DFWPvjbYDoQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
+    },
+  ];
+  const landlordListings = [];
+  for (const listing of listingData) {
+    landlordListings.push(<Listing {...listing} />);
+  }
+
+  const applicationsPending = [];
+  for (const application of applicationData) {
+    applicationsPending.push(<Application {...application} />);
+  }
 
   return (
-    <div className="listing-main">
-      <img src={`data:image/jpeg;base64,${props.pic}`} alt="" />
-      <p>{props.name}</p>
-      <p>{props.price}</p>
-      <p>{props.name}</p>
-      <p>{props.bedroom}</p>
-      <p>{props.bathroom}</p>
-      <button
-        type="button"
-        onClick={() => {
-          toListingInfo();
-        }}
-      >
-        Edit Listing
-      </button>
-    </div>
+    <>
+      <h2 className="heading-main">Landlord's Listings</h2>
+      {/* <div>
+        <div>
+          <Button onClick={() => setShowSignUp(!showSignUp)}>Sign Up</Button>
+        </div>
+        {showSignUp && <SignUp />}
+      </div> */}
+      <div className="listing">
+        <div className="listings-main">
+          <p className="listing-heading">Current Listings</p>
+          <p className="num-listing">{landlordListings.length} Listings</p>
+          {landlordListings}
+        </div>
+        <div className="listings-pending">
+          <p className="listing-heading">Pending Applications</p>
+          <p className="num-listing">{applicationsPending.length} Listings</p>
+          {applicationsPending}
+        </div>
+      </div>
+    </>
   );
 };
 
-export default Listing;
+export default Listings;
