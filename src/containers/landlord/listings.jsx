@@ -1,33 +1,45 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Listing from "./listing";
 import Application from "./application";
 import "./listings.scss";
 
-
 const Listings = () => {
-  const listingData = [
-    {
-      id: 1,
-      name: "ABC",
-      desc: "Apartment",
-      amenities: "A/C",
-      price: "100",
-      city: "San Diego",
-      bedroom: "2",
-      bathroom: "2",
-      pic: "https://www.bhg.com/thmb/0Fg0imFSA6HVZMS2DFWPvjbYDoQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
-    },
-    {
-      id: 1,
-      name: "XYZ",
-      desc: "Apartment",
-      amenities: "A/C",
-      price: "100",
-      city: "San Diego",
-      bedroom: "2",
-      bathroom: "2",
-      pic: "https://www.bhg.com/thmb/0Fg0imFSA6HVZMS2DFWPvjbYDoQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/white-modern-house-curved-patio-archway-c0a4a3b3-aa51b24d14d0464ea15d36e05aa85ac9.jpg",
-    },
-  ];
+  const [fetchDataFromDB, setFetchDataFromDB] = useState(true);
+  const [dataFromDB, setDataFromDB] = useState([]);
+
+  let currentEmail = "email@email.com";
+  const landlordEmail = currentEmail.split("@");
+
+  useEffect(() => {
+    if (fetchDataFromDB) {
+      axios
+        .get(
+          `http://18.196.64.140:8080/listings/${landlordEmail[0]}%40${landlordEmail[1]}`
+        )
+        .then((response) => {
+          setDataFromDB(response.data.data);
+          setFetchDataFromDB(false);
+        });
+    }
+  }, [fetchDataFromDB, landlordEmail]);
+
+  // console.log(dataFromDB);
+  const listingData = [];
+
+  for (const entry of dataFromDB) {
+    listingData.push({
+      id: entry.listing.id,
+      name: entry.listing.description,
+      desc: entry.listing.description,
+      amenities: entry.listing.amenities,
+      price: entry.listing.price,
+      // city: entry.listing.id,
+      bedroom: entry.listing.num_bathrooms,
+      bathroom: entry.listing.num_bedrooms,
+      pic: entry.images[0].image_data,
+    });
+  }
 
   const applicationData = [
     {
@@ -69,7 +81,9 @@ const Listings = () => {
           {landlordListings}
         </div>
         <div className="listings-pending">
-          <p className="text-3xl font-semibold mt-2 mb-6">Pending Applications</p>
+          <p className="text-3xl font-semibold mt-2 mb-6">
+            Pending Applications
+          </p>
           <p className="num-listing">{applicationsPending.length} Listings</p>
           {applicationsPending}
         </div>
