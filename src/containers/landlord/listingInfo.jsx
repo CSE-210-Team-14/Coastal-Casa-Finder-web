@@ -25,38 +25,23 @@ const ListingInfo = () => {
 
 
     const handleDescChange = (event) => {
-        //console.log('change detected');
-        //console.log(event.value);
         currentListing.desc = event.value;
-        //console.log(currentListing);
     }
 
     const handleAmenChange = (event) => {
-        //console.log('change detected');
-        //console.log(event.value);
         currentListing.amenities = event.value;
-        //console.log(currentListing);
     }
 
     const handleBedChange = (event) => {
-        //console.log('change detected');
-        //console.log(event.value);
         currentListing.bedroom = event.value;
-        //console.log(currentListing);
     }
 
     const handleBathChange = (event) => {
-        //console.log('change detected');
-        //console.log(event.value);
         currentListing.bathroom = event.value;
-        //console.log(currentListing);
     }
 
     const handleCityChange = (event) => {
-        //console.log('change detected');
-        //console.log(event.value);
         currentListing.city = event.value;
-        //console.log(currentListing);
     }
 
     return (

@@ -2,19 +2,6 @@ import React from "react";
 import "./userListing.scss";
 
 const UserListing = (props) => {
-  //console.log(props.name);
-  /*const data = {
-    id: props.id,
-    name: props.name,
-    desc: props.desc,
-    amenities: props.amenities,
-    price: props.price,
-    city: props.city,
-    bedroom: props.bedroom,
-    bathroom: props.bathroom,
-    pic: props.pic,
-  }
-  */
 
   const displayListing = (props) => {
 
