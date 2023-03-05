@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Listing from "./listing";
 import Application from "./application";
-import axios from "axios";
 import "./listings.scss";
 
 const Listings = () => {
