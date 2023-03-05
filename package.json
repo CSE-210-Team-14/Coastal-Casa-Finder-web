@@ -37,6 +37,7 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/node": "18.7.16",
     "@types/react": "18.0.18",
     "@types/react-date-range": "^1.4.4",
