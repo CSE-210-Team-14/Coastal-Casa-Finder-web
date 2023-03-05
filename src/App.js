@@ -9,6 +9,7 @@ import Header from "./components/Header.tsx";
 import InfoCard from "./components/InfoCard.tsx";
 import Button from "@mui/material/Button";
 import SignUp from "./containers/signup/SignUpContainer";
+import UserView from "./containers/user/userView";
 
 class App extends Component {
   
@@ -22,7 +23,6 @@ class App extends Component {
     this.hideComponent = this.hideComponent.bind(this);
     this.hideSignup = this.hideSignup.bind(this);
   }
-  
 
   hideComponent() {
     this.setState({ showLandlordListing: !this.state.showLandlordListing });
@@ -51,6 +51,7 @@ class App extends Component {
                 <Route path="/listingInfo" element={<ListingInfo />} />
                 <Route path="/listingSearch" element={<ListingSearch />} />
                 <Route path="/application" element={<ApplicationInfo />} />
+                <Route path="/userInfo" element={<UserView />}/>
               </Routes>
             </div>:
         <main className="flex">

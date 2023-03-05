@@ -61,15 +61,15 @@ const Listings = () => {
 
   return (
     <>
-      <h2 className="heading-main">Landlord's Listings</h2>
+      <h2 className="text-3xl font-semibold mt-2 mb-6">Landlord Listings</h2>
       <div className="listing">
         <div className="listings-main">
-          <p className="listing-heading">Current Listings</p>
+          <p className="text-3xl font-semibold mt-2 mb-6">Current Listings</p>
           <p className="num-listing">{landlordListings.length} Listings</p>
           {landlordListings}
         </div>
         <div className="listings-pending">
-          <p className="listing-heading">Pending Applications</p>
+          <p className="text-3xl font-semibold mt-2 mb-6">Pending Applications</p>
           <p className="num-listing">{applicationsPending.length} Listings</p>
           {applicationsPending}
         </div>
