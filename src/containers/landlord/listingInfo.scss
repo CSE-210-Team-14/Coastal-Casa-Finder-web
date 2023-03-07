@@ -138,3 +138,21 @@
 .edit-button:hover{
     background: rgba(88, 88, 94, 0.5);
 }
+
+.return-button {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: block;
+    padding: 3px;
+    text-align: left;
+    margin-left: 20px;
+
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+
+}
+
+.return-button:hover {
+    background-color: #ddd;
+    color: black;
+}
