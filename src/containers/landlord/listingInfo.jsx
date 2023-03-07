@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EditText } from "react-edit-text";
 import "./listingInfo.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ListingInfo = () => {
   const location = useLocation();
@@ -13,13 +13,16 @@ const ListingInfo = () => {
   const handleClick = () => {
     if (editState === true) {
       setEditState(false);
-      console.log("success");
     } else {
       setEditState(true);
-      console.log("success2");
-      console.log(currentListing);
     }
   };
+
+  let navigate = useNavigate();
+
+  const previousPage = () => {
+    navigate(-1);
+  }
 
   const handleDescChange = (event) => {
     currentListing.desc = event.value;
@@ -43,6 +46,9 @@ const ListingInfo = () => {
 
   return (
     <>
+      <button className="return-button" onClick={() => {
+            previousPage();
+          }}></button>
       <h2 className="listing-name">{currentListing.name}</h2>
       <div className="listing">
         <img

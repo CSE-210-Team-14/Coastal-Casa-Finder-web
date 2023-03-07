@@ -1,6 +1,6 @@
 import React from "react";
 import "./application.scss";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 
 const ApplicationInfo = () => {
@@ -9,8 +9,17 @@ const ApplicationInfo = () => {
 
     const currentApp = location.state;
 
+    let navigate = useNavigate();
+
+    const previousPage = () => {
+        navigate(-1);
+    }
+
     return (
         <>
+            <button className="return-button" onClick={() => {
+                previousPage();
+            }}></button>
             <h2 className="app-name">{currentApp.name}</h2>
             <div className="app-img">
                 <img className="listing-img" src={currentApp.pic} alt=""></img>
