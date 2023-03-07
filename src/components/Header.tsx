@@ -1,28 +1,31 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { SearchIcon, MenuIcon, UserCircleIcon } from "@heroicons/react/solid";
-import { MdOutlineShower } from 'react-icons/md';
-import { BiBed } from 'react-icons/bi';
-import Slider from '@mui/material/Slider';
-import { BsCurrencyDollar } from 'react-icons/bs';
-import DatePicker from 'react-date-picker/dist/entry.nostyle';
+import { MdOutlineShower } from "react-icons/md";
+import { BiBed } from "react-icons/bi";
+import Slider from "@mui/material/Slider";
+import { BsCurrencyDollar } from "react-icons/bs";
+import DatePicker from "react-date-picker/dist/entry.nostyle";
 import "./datepicker.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-calendar/dist/Calendar.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-calendar/dist/Calendar.css";
 
 type HeaderProps = {
   placeholder?: any;
   showSignup?: any;
 };
 
-
-const Header: React.FunctionComponent<HeaderProps> = ({ 
-  placeholder, showSignup}) => {
+const Header: React.FunctionComponent<HeaderProps> = ({
+  placeholder,
+  showSignup,
+}) => {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [noBed, setNoBed] = useState<any>(1);
   const [noBath, setNoBath] = useState<any>(1);
   const [price, setPrice] = useState<any>(1000);
   const [dist, setDist] = useState<any>(10);
+  const [dataFromDB, setDataFromDB] = useState([]);
 
   const handleSelect = (startDate: any) => {
     setStartDate(startDate);
@@ -34,13 +37,22 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 
   const search = () => {
     //TODO add backend call
+    const searchString = `location=${searchInput}&price=${price}&num_bedrooms=${noBed}&num_bathrooms=${noBath}`;
+    axios
+      .get(`http://18.196.64.140:8080/listings/search?${searchString}`)
+      .then((response: any) => {
+        setDataFromDB(response.data.data);
+      });
   };
+
+  console.log(dataFromDB);
+
   return (
-    <header
-      className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10" >
+    <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
       <div className="relative flex items-center h-10 cursor-pointer my-auto">
         <img
-          src={require('./cc.png')} style={{width: 80, height: 80}}
+          src={require("./cc.png")}
+          style={{ width: 80, height: 80 }}
           alt="company logo"
         />
       </div>
@@ -55,11 +67,15 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         />
         <SearchIcon
           className="hidden md:inline-flex h-8 bg-blue-400 text-white rounded-full
-        p-2 cursor-pointer md:mx-2" onChange={search}
+        p-2 cursor-pointer md:mx-2"
+          onChange={search}
         />
       </div>
       <div className="flex items-center space-x-4 justify-end text-gray-500">
-        <div className="flex items-center space-x-2 border-2 p-2 rounded-full cursor-pointer" onClick={showSignup}>
+        <div
+          className="flex items-center space-x-2 border-2 p-2 rounded-full cursor-pointer"
+          onClick={showSignup}
+        >
           <MenuIcon className="h-6" />
           <UserCircleIcon className="h-6" />
         </div>
@@ -68,19 +84,23 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         <div className="flex flex-col col-span-3 mx-auto">
           <div className="flex items-center mb-6">
             Start Date
-          <DatePicker onChange={handleSelect} value={startDate} className='react-date-picker'/>
+            <DatePicker
+              onChange={handleSelect}
+              value={startDate}
+              className="react-date-picker"
+            />
           </div>
           <div className="flex items-center mb-4">
             Radius (miles)
             <Slider
-            size="small"
-            defaultValue={dist}
-            aria-label="Small"
-            valueLabelDisplay="auto"
-            onChange={setDist}
+              size="small"
+              defaultValue={dist}
+              aria-label="Small"
+              valueLabelDisplay="auto"
+              onChange={setDist}
             />
           </div>
-          
+
           <div className="flex items-center mb-6 pl-4">
             <BiBed className="h-5" />
             <input
