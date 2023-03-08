@@ -3,6 +3,7 @@ import SignUpForm from "./SignUpForm.js";
 import axios from "axios";
 const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
+const validateLoginUpForm = FormValidators.validateLoginUpForm;
 const zxcvbn = require("zxcvbn");
 
 
@@ -75,6 +76,7 @@ export default class SignUpContainer extends Component {
   }
   
   submitSignup(user) {
+    //either use submit signup or submit login here 
     // var params = { landlord_checkbox: user.landlord_checkbox, password: user.pw, email: user.email };
     // TODO:  Connect to our server
     /*'''axios
@@ -97,13 +99,16 @@ export default class SignUpContainer extends Component {
 
   validateForm(event) {
     event.preventDefault();
-    var payload = validateSignUpForm(this.state.user);
+    if (this.state.isSignup) {
+      var payload = validateSignUpForm(this.state.user);
+    } else {
+      var payload = validateLoginUpForm(this.state.user);
+    }
     if (payload.success) {
       this.setState({
         errors: {}
       });
       var user = {
-        landlord_checkbox: this.state.user.landlord_checkbox,
         pw: this.state.user.password,
         email: this.state.user.email
       };
