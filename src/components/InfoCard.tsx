@@ -19,15 +19,15 @@ const InfoCard: React.FC<InfoCardProps> = ({
   title,
   star,
   price,
-  total,
 }) => {
+  console.log(location, description, title, star, price)
   return (
     <div className="flex py-7 px-2 pr-4 border-b cursor-pointer hover:opacity-80
     hover:shadow-lg transition duration-200 ease-out first:border-t"
     >
       <div className="relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0">
       <img
-          src={img}
+          src={`data:image/jpeg;base64,${img}`}
           className="rounded-2xl"
           alt="house"
         />
@@ -49,7 +49,6 @@ const InfoCard: React.FC<InfoCardProps> = ({
             <p className="text-lg font-semibold pb-2 lg:text-2xl">
               $ {price} rent
             </p>
-            <p className="text-right font-extralight">$ {total} utilities</p>
           </div>
         </div>
       </div>

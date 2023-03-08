@@ -10,18 +10,31 @@ import InfoCard from "./components/InfoCard.tsx";
 import Button from "@mui/material/Button";
 import SignUp from "./containers/signup/SignUpContainer";
 import UserView from "./containers/user/userView";
+import axios from "axios";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: "React",
       showSignUp: false,
       showLandlordListing: false,
+      searchResults: [{ images: [{image_data: "https://i.postimg.cc/pXdGBLT7/19414d6a-8471-4088-8ea3-ba034acc87ca.webp"}],
+      listing: {
+        id: "1",
+        location: "San Diego",
+        description: "Cool house!",
+        name: "Apartment",
+        star: "4.8",
+        price: "1000",
+        total: "500",
+      }}],
+      searchInput: "Your Location",
     };
     this.hideComponent = this.hideComponent.bind(this);
     this.hideSignup = this.hideSignup.bind(this);
+    this.search = this.search.bind(this);
   }
+  
 
   hideComponent() {
     this.setState({ showLandlordListing: !this.state.showLandlordListing });
@@ -31,37 +44,28 @@ class App extends Component {
     this.setState({ showSignUp: !this.state.showSignUp });
   }
 
+  search = (searchInput, price, noBed, noBath) => {
+    console.log(searchInput, price, noBed, noBath)
+    this.searchInput = searchInput
+    const searchString = `location=${searchInput}&price=${price}&num_bedrooms=${noBed}&num_bathrooms=${noBath}`;
+    axios
+      .get(`http://18.196.64.140:8080/listings/search?${searchString}`)
+      .then((response: any) => {
+        console.log(response.data.data, response.data.data.length)
+        if (response.data.data.length > 0) { 
+          this.setState({searchResults: response.data.data});
+        }
+      });
+  };
+
   render() {
-    const results = "100+";
-    const location = "San Diego";
-    const searchResults = [
-      {
-        key: "1",
-        img: "https://i.postimg.cc/pXdGBLT7/19414d6a-8471-4088-8ea3-ba034acc87ca.webp",
-        location: "San Diego",
-        description: "Cool house!",
-        title: "Apartment",
-        star: "4.8",
-        price: "1000",
-        total: "500",
-      },
-      {
-        key: "2",
-        img: "https://i.postimg.cc/pXdGBLT7/19414d6a-8471-4088-8ea3-ba034acc87ca.webp",
-        location: "San Diego",
-        description: "Cool house!",
-        title: "Apartment",
-        star: "4.8",
-        price: "1000",
-        total: "500",
-      },
-    ];
     return (
       <BrowserRouter>
         <div className="App">
           <Header
             placeholder={"Search for location"}
             showSignup={this.hideComponent}
+            search={this.search}
           />
           <div>
             {this.state.showLandlordListing ? (
@@ -83,21 +87,21 @@ class App extends Component {
             ) : (
               <main className="flex">
                 <section className="flex-grow pt-14 px-6">
-                  <p className="text-xs">{results} Results</p>
+                  <p className="text-xs">{this.state.searchResults.length} Results</p>
                   <h1 className="text-3xl font-semibold mt-2 mb-6">
-                    Housing in {location}
+                    Housing in {this.state.searchInput}
                   </h1>
                   <div className="flex flex-col">
-                    {searchResults?.map((item: any) => (
+                    {console.log(this.state.searchResults)}
+                    {this.state.searchResults?.map((item: any) => (
                       <InfoCard
-                        key={item.img}
-                        img={item.img}
-                        location={item.location}
-                        description={item.description}
-                        title={item.title}
-                        star={item.star}
-                        price={item.price}
-                        total={item.total}
+                        key={item.listing.id}
+                        img={item.images[0].image_data}
+                        location={item.listing.location}
+                        description={item.listing.description}
+                        title={item.listing.name}
+                        star={5}
+                        price={item.listing.price}
                       />
                     ))}
                   </div>

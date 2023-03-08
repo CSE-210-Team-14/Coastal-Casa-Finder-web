@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { SearchIcon, MenuIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { MdOutlineShower } from "react-icons/md";
 import { BiBed } from "react-icons/bi";
@@ -13,19 +12,20 @@ import "react-calendar/dist/Calendar.css";
 type HeaderProps = {
   placeholder?: any;
   showSignup?: any;
+  search?: any;
 };
 
 const Header: React.FunctionComponent<HeaderProps> = ({
   placeholder,
   showSignup,
+  search,
 }) => {
-  const [searchInput, setSearchInput] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [noBed, setNoBed] = useState<any>(1);
-  const [noBath, setNoBath] = useState<any>(1);
-  const [price, setPrice] = useState<any>(1000);
-  const [dist, setDist] = useState<any>(10);
-  const [dataFromDB, setDataFromDB] = useState([]);
+  var [searchInput, setSearchInput] = useState("");
+  var [startDate, setStartDate] = useState(new Date());
+  var [noBed, setNoBed] = useState<any>(1);
+  var [noBath, setNoBath] = useState<any>(1);
+  var [price, setPrice] = useState<any>(1000);
+  var [dist, setDist] = useState<any>(10);
 
   const handleSelect = (startDate: any) => {
     setStartDate(startDate);
@@ -34,19 +34,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   const resetInput = () => {
     setSearchInput("");
   };
-
-  const search = () => {
-    //TODO add backend call
-    const searchString = `location=${searchInput}&price=${price}&num_bedrooms=${noBed}&num_bathrooms=${noBath}`;
-    axios
-      .get(`http://18.196.64.140:8080/listings/search?${searchString}`)
-      .then((response: any) => {
-        setDataFromDB(response.data.data);
-      });
-  };
-
-  console.log(dataFromDB);
-
+  
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
       <div className="relative flex items-center h-10 cursor-pointer my-auto">
@@ -68,7 +56,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         <SearchIcon
           className="hidden md:inline-flex h-8 bg-blue-400 text-white rounded-full
         p-2 cursor-pointer md:mx-2"
-          onChange={search}
+          onClick={function() {search(searchInput, price, noBed, noBath)}}
         />
       </div>
       <div className="flex items-center space-x-4 justify-end text-gray-500">
@@ -131,7 +119,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
             <button onClick={resetInput} className="flex-grow text-gray-500">
               Cancel
             </button>
-            <button onClick={search} className="flex-grow text-blue-400">
+            <button className="flex-grow text-blue-400" onClick={function() {search(searchInput, price, noBed, noBath)}}>
               Search
             </button>
           </div>
