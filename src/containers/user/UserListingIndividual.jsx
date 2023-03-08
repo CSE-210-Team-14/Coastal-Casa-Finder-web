@@ -10,8 +10,6 @@ export const UserListingIndividual = ({
   price,
   pic,
 }) => {
-  //   console.log(name, desc);
-  console.log(pic);
   return (
     <div id="currentListing" className="listings-details-user">
       <h2 id="listing-title" className="listing-name-user">

@@ -11,7 +11,11 @@ import InfoCard from "./components/InfoCard.tsx";
 import Button from "@mui/material/Button";
 import SignUp from "./containers/signup/SignUpContainer";
 import UserView from "./containers/user/userView";
+<<<<<<< HEAD
 import axios from "axios";
+=======
+import Navbar from "./containers/navigation/navBar";
+>>>>>>> a56ffe9 (Added navbar)
 
 class App extends Component {
   constructor() {
@@ -71,6 +75,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <Navbar />
         <div className="App">
           <Header
             placeholder={"Search for location"}

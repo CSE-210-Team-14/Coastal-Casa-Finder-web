@@ -20,7 +20,6 @@ const UserView = () => {
       axios
         .get(`http://18.196.64.140:8080/listings/alllistings`)
         .then((response) => {
-          // console.log(response);
           setDataFromDB(response.data.data);
           if (response.data.data && response.data.data.length > 0) {
             setName(response.data.data[0].listing.name);
