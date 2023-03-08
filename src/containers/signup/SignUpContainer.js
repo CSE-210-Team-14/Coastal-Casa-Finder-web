@@ -99,11 +99,11 @@ export default class SignUpContainer extends Component {
   validateForm(event) {
     event.preventDefault();
     if (this.state.isSignup) {
-      const payload = validateSignUpForm(this.state.user);
+      var payload_signup = validateSignUpForm(this.state.user);
     } else {
-      const payload = validateLoginUpForm(this.state.user);
+      var payload_login = validateLoginUpForm(this.state.user);
     }
-    if (payload.success) {
+    if ((this.state.isSignup && payload_signup.success )|| (!this.state.isSignup && payload_login.success )) {
       this.setState({
         errors: {}
       });
@@ -113,7 +113,7 @@ export default class SignUpContainer extends Component {
       };
       this.submitSignup(user);
     } else {
-      const errors = payload.errors;
+      const errors = this.state.isSignup ? payload_signup.errors : payload_login.errors;
       this.setState({
         errors
       });

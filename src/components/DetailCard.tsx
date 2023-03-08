@@ -33,6 +33,7 @@ const DetailCard: React.FC<DetailProps> = ({
         <img
           src={`data:image/jpeg;base64,${img}`}
           className="rounded-2xl h-96 w-2/3"
+          alt="the house"
         />
       </div>
       <p className="text pb-4 pt-10 w-full flex-grow">{description}</p>
