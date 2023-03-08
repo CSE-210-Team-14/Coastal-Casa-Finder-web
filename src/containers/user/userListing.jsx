@@ -16,11 +16,10 @@ const UserListing = ({
       <div className="listings-main-user">
         <div className="listing-main-user">
           <img src={`data:image/jpeg;base64,${currentValue.pic}`} alt=""></img>
-          <p>{currentValue.name}</p>
-          <p>{currentValue.price}</p>
-          <p>{currentValue.name}</p>
-          <p>{currentValue.bedroom}</p>
-          <p>{currentValue.bathroom}</p>
+          <p>Name: {currentValue.name}</p>
+          <p>Price: {Math.round(currentValue.price)}</p>
+          <p>Bed: {currentValue.bedroom}</p>
+          <p>Bath: {currentValue.bathroom}</p>
           <button
             type="button"
             onClick={() => {

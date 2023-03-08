@@ -24,10 +24,10 @@ const Application = (props) => {
   return (
     <div className="listing-main">
       <img src={props.pic} alt=""></img>
-      <p>{props.name}</p>
-      <p>{props.move}</p>
-      <p>{props.residents}</p>
-      <p>{props.score}</p>
+      <p>Name: {props.name}</p>
+      <p>Move-In: {props.move}</p>
+      <p>Residents: {props.residents}</p>
+      <p>Credit Score: {props.score}</p>
       <button type="button" onClick={()=>{toApplicationInfo()}}>Edit Application</button>
     </div>
   );

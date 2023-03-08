@@ -1,5 +1,5 @@
 import React from "react";
-import "./userListing.scss";
+import "./UserListingIndividual.scss";
 
 export const UserListingIndividual = ({
   name,
@@ -11,13 +11,14 @@ export const UserListingIndividual = ({
   pic,
 }) => {
   //   console.log(name, desc);
+  console.log(pic);
   return (
     <div id="currentListing" className="listings-details-user">
       <h2 id="listing-title" className="listing-name-user">
         {name}
       </h2>
       <div className="listing">
-        <img className="listing-img-user" src={pic} alt=""></img>
+        <img className="listing-img-user" src={`data:image/jpeg;base64,${pic}`} alt=""></img>
       </div>
       <h3 className="listing-categ-user">About</h3>
       <div className="desc-box-user">
