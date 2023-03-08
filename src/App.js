@@ -21,12 +21,16 @@ class App extends Component {
       searchResults: [],
       searchInput: "Your Location",
     };
+    this.search = this.search.bind(this);
     this.hideComponent = this.hideComponent.bind(this);
     this.hideSignup = this.hideSignup.bind(this);
-    this.search = this.search.bind(this);
+    
+  } 
+  
+  componentDidMount() {
+    this.search("", 0, 0, 0);
   }
   
-
   hideComponent() {
     this.setState({ showLandlordListing: !this.state.showLandlordListing });
   }
@@ -38,7 +42,6 @@ class App extends Component {
   search = (searchInput, price, noBed, noBath) => {
     this.searchInput = searchInput
     const searchString = `location=${searchInput}&price=${price}&num_bedrooms=${noBed}&num_bathrooms=${noBath}`;
-    
     axios
       .get(`http://18.196.64.140:8080/listings/search?${searchString}`)
       .then((response: any) => {
@@ -55,7 +58,6 @@ class App extends Component {
   };
 
   render() {
-    this.search("", 0, 0, 0);
     return (
       <BrowserRouter>
         <div className="App">
@@ -89,7 +91,6 @@ class App extends Component {
                     Housing in {this.state.searchInput}
                   </h1>
                   <div className="flex flex-col">
-                    {console.log(this.state.searchResults)}
                     {this.state.searchResults?.map((item: any) => (
                       <InfoCard
                         key={item.listing.id}
