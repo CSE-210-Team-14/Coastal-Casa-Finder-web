@@ -96,7 +96,7 @@ class App extends Component {
               </div>
             ) : (
               <main className="relative">
-                <section className="pt-14 px-6 w-1/2 w-full ml-auto">
+                <section className="pt-14 px-6 ml-auto flex flex-col w-1/2">
                   <p className="text-xs">{this.state.searchResults.length} Results</p>
                   <h1 className="text-3xl font-semibold mt-2 mb-6">
                     Housing in {this.state.searchInput}
@@ -115,9 +115,20 @@ class App extends Component {
                     ))}
                   </div>
                 </section>
-                <section className="relative top-44 w-full min-h-screen md:fixed pt-14 px-6 w-1/2">
-                {console.log('ttt', typeof(this.state.currentDetailItem.images) ==="undefined")}
-                <DetailCard img={typeof(this.state.currentDetailItem.images) !== "undefined"? this.state.currentDetailItem.images[0].image_data : ""} title={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.name : ""} description={typeof(this.state.currentDetailItem.listing) !== "undefined" ? this.state.currentDetailItem.listing.description : ""} buttonText={"Contact Landlord"}></DetailCard>
+                <section className="relative flex top-44 h-fit md:fixed  pt-14 px-6 rounded-xl w-1/2 m-2">
+                {typeof(this.state.currentDetailItem.listing) === "undefined" ? 
+                <h1 className="text-3xl font-semibold mt-2 mb-6 text-center w-full h-full">
+                Please select a listing for details!
+                </h1> : 
+                <DetailCard img={typeof(this.state.currentDetailItem.images) !== "undefined"? this.state.currentDetailItem.images[0].image_data : ""} 
+                title={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.name : ""} 
+                description={typeof(this.state.currentDetailItem.listing) !== "undefined" ? this.state.currentDetailItem.listing.description : ""} 
+                noBath={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.num_bathrooms : ""} 
+                noBed={typeof(this.state.currentDetailItem.listing) !== "undefined" ? this.state.currentDetailItem.listing.num_bedrooms : ""} 
+                price={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.price : ""}  
+                email={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.landlord_email : ""} 
+                amenities={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.amenities : ""}  
+                buttonText={"Contact Landlord"}></DetailCard>}
                 </section>
               </main>
             )}
