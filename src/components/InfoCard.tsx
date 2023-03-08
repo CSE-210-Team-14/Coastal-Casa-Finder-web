@@ -20,7 +20,6 @@ const InfoCard: React.FC<InfoCardProps> = ({
   star,
   price,
 }) => {
-  console.log(location, description, title, star, price)
   return (
     <div className="flex py-7 px-2 pr-4 border-b cursor-pointer hover:opacity-80
     hover:shadow-lg transition duration-200 ease-out first:border-t"
@@ -28,7 +27,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
       <div className="relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0">
       <img
           src={`data:image/jpeg;base64,${img}`}
-          className="rounded-2xl"
+          className="rounded-2xl md:w-80 md:h-52"
           alt="house"
         />
       </div>
@@ -37,13 +36,11 @@ const InfoCard: React.FC<InfoCardProps> = ({
           <p>{location}</p>
           <HeartIcon className="h-7 cursor-pointer" />
         </div>
-        <h4 className="text-xl">{title}</h4>
-        <div className="border-b w-10 pt-5" />
-        <p className="pt-2 text-sm text-gray-500 flex-grow">{description}</p>
+        <h4 className="text-xl text-left">{title}</h4>
+        <div className="border-b w-10 pt-3" />
+        <p className="pt-2 text-sm text-left text-gray-500 flex-grow">{description.substring(0, 300)+"..."}</p>
         <div className="flex justify-between">
           <p className="flex items-center">
-            <StarIcon className="h-5 text-blue-400" />
-            {star}
           </p>
           <div>
             <p className="text-lg font-semibold pb-2 lg:text-2xl">

@@ -18,16 +18,7 @@ class App extends Component {
     this.state = {
       showSignUp: false,
       showLandlordListing: false,
-      searchResults: [{ images: [{image_data: "https://i.postimg.cc/pXdGBLT7/19414d6a-8471-4088-8ea3-ba034acc87ca.webp"}],
-      listing: {
-        id: "1",
-        location: "San Diego",
-        description: "Cool house!",
-        name: "Apartment",
-        star: "4.8",
-        price: "1000",
-        total: "500",
-      }}],
+      searchResults: [],
       searchInput: "Your Location",
     };
     this.hideComponent = this.hideComponent.bind(this);
@@ -45,20 +36,26 @@ class App extends Component {
   }
 
   search = (searchInput, price, noBed, noBath) => {
-    console.log(searchInput, price, noBed, noBath)
     this.searchInput = searchInput
     const searchString = `location=${searchInput}&price=${price}&num_bedrooms=${noBed}&num_bathrooms=${noBath}`;
+    
     axios
       .get(`http://18.196.64.140:8080/listings/search?${searchString}`)
       .then((response: any) => {
-        console.log(response.data.data, response.data.data.length)
         if (response.data.data.length > 0) { 
           this.setState({searchResults: response.data.data});
+        } else {
+          axios
+            .get(`http://18.196.64.140:8080/listings/alllistings`)
+            .then((response: any) => {
+            this.setState({searchResults: response.data.data});
+      });
         }
       });
   };
 
   render() {
+    this.search("", 0, 0, 0);
     return (
       <BrowserRouter>
         <div className="App">
