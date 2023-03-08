@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import SignUpForm from "./SignUpForm.js";
+import axios from "axios";
 const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
 const zxcvbn = require("zxcvbn");
+
 
 export default class SignUpContainer extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export default class SignUpContainer extends Component {
         password: "",
         pwconfirm: ""
       },
+      isSignup: true,
       btnTxt: "show",
       type: "password",
       score: "0",
@@ -25,6 +28,7 @@ export default class SignUpContainer extends Component {
     this.submitSignup = this.submitSignup.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.pwHandleChange = this.pwHandleChange.bind(this);
+    this.changeIsSignup = this.changeIsSignup.bind(this);
   }
 
   handleChange(event) {
@@ -35,6 +39,14 @@ export default class SignUpContainer extends Component {
     this.setState({
       user
     });
+  }
+
+  changeIsSignup() {
+    this.setState(state =>
+      Object.assign({}, state, {
+        isSignup: !state.isSignup
+      })
+    ); 
   }
 
   pwHandleChange(event) {
@@ -64,8 +76,8 @@ export default class SignUpContainer extends Component {
   
   submitSignup(user) {
     // var params = { landlord_checkbox: user.landlord_checkbox, password: user.pw, email: user.email };
-    /* TODO:  Connect to our server
-    axios
+    // TODO:  Connect to our server
+    /*'''axios
       .post("https://ouramazingserver.com/api/signup/submit", params)
       .then(res => {
         if (res.data.success === true) {
@@ -129,6 +141,8 @@ export default class SignUpContainer extends Component {
           btnTxt={this.state.btnTxt}
           type={this.state.type}
           pwMask={this.pwMask}
+          isSignup={this.state.isSignup}
+          changeIsSignup = {this.changeIsSignup}
         />
       </div>
     );
