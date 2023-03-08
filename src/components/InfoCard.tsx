@@ -1,28 +1,28 @@
 import React from "react";
-import { HeartIcon } from "@heroicons/react/outline";
-import { StarIcon } from "@heroicons/react/solid";
 
 type InfoCardProps = {
+  id: any;
   img: any;
   location: any;
   description: any;
   title: any;
-  star: number;
   price: any;
-  total: any;
+  showDetail: any;
 };
 
 const InfoCard: React.FC<InfoCardProps> = ({
+  id, 
   img,
   location,
   description,
   title,
-  star,
   price,
+  showDetail,
 }) => {
   return (
     <div className="flex py-7 px-2 pr-4 border-b cursor-pointer hover:opacity-80
     hover:shadow-lg transition duration-200 ease-out first:border-t"
+    onClick={function() {showDetail(id)}}
     >
       <div className="relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0">
       <img
@@ -34,7 +34,6 @@ const InfoCard: React.FC<InfoCardProps> = ({
       <div className="flex flex-col flex-grow pl-5">
         <div className="flex justify-between">
           <p>{location}</p>
-          <HeartIcon className="h-7 cursor-pointer" />
         </div>
         <h4 className="text-xl text-left">{title}</h4>
         <div className="border-b w-10 pt-3" />
