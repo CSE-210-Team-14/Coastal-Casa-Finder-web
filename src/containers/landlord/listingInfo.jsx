@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { EditText } from "react-edit-text";
 import "./listingInfo.scss";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ListingInfo = () => {
@@ -10,13 +12,15 @@ const ListingInfo = () => {
 
   const [editState, setEditState] = useState(true);
 
-  const handleClick = () => {
-    if (editState === true) {
-      setEditState(false);
-    } else {
-      setEditState(true);
-    }
+  const handleEdit = () => {
+    setEditState(false);
+    alert("Able to edit listing");
   };
+
+  const handleSave = () => {
+    setEditState(true);
+    alert("Listing has been saved");
+  }
 
   let navigate = useNavigate();
 
@@ -83,6 +87,7 @@ const ListingInfo = () => {
           <p className="property-text">Bedroom: </p>
           <EditText
             readonly={editState}
+            type="number"
             className="property-entry"
             onSave={handleBedChange}
             defaultValue={currentListing.bedroom}
@@ -93,6 +98,7 @@ const ListingInfo = () => {
           <p className="property-text">Bathroom: </p>
           <EditText
             readonly={editState}
+            type="number"
             className="property-entry"
             onSave={handleBathChange}
             defaultValue={currentListing.bathroom}
@@ -114,10 +120,18 @@ const ListingInfo = () => {
         <button
           className="edit-button"
           onClick={() => {
-            handleClick();
+            handleEdit();
           }}
         >
-          Update/Edit
+          Edit
+        </button>
+        <button
+          className="edit-button"
+          onClick={() => {
+            handleSave();
+          }}
+        >
+          Save
         </button>
       </div>
     </>
