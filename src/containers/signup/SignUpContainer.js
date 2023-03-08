@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SignUpForm from "./SignUpForm.js";
-import axios from "axios";
 const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
 const validateLoginUpForm = FormValidators.validateLoginUpForm;
@@ -100,9 +99,9 @@ export default class SignUpContainer extends Component {
   validateForm(event) {
     event.preventDefault();
     if (this.state.isSignup) {
-      var payload = validateSignUpForm(this.state.user);
+      const payload = validateSignUpForm(this.state.user);
     } else {
-      var payload = validateLoginUpForm(this.state.user);
+      const payload = validateLoginUpForm(this.state.user);
     }
     if (payload.success) {
       this.setState({
