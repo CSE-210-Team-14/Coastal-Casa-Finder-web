@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import SignUpForm from "./SignUpForm.js";
 const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
+const validateLoginUpForm = FormValidators.validateLoginUpForm;
 const zxcvbn = require("zxcvbn");
+
 
 export default class SignUpContainer extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export default class SignUpContainer extends Component {
         password: "",
         pwconfirm: ""
       },
+      isSignup: true,
       btnTxt: "show",
       type: "password",
       score: "0",
@@ -25,6 +28,7 @@ export default class SignUpContainer extends Component {
     this.submitSignup = this.submitSignup.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.pwHandleChange = this.pwHandleChange.bind(this);
+    this.changeIsSignup = this.changeIsSignup.bind(this);
   }
 
   handleChange(event) {
@@ -35,6 +39,14 @@ export default class SignUpContainer extends Component {
     this.setState({
       user
     });
+  }
+
+  changeIsSignup() {
+    this.setState(state =>
+      Object.assign({}, state, {
+        isSignup: !state.isSignup
+      })
+    ); 
   }
 
   pwHandleChange(event) {
@@ -63,9 +75,10 @@ export default class SignUpContainer extends Component {
   }
   
   submitSignup(user) {
+    //either use submit signup or submit login here 
     // var params = { landlord_checkbox: user.landlord_checkbox, password: user.pw, email: user.email };
-    /* TODO:  Connect to our server
-    axios
+    // TODO:  Connect to our server
+    /*'''axios
       .post("https://ouramazingserver.com/api/signup/submit", params)
       .then(res => {
         if (res.data.success === true) {
@@ -85,19 +98,22 @@ export default class SignUpContainer extends Component {
 
   validateForm(event) {
     event.preventDefault();
-    var payload = validateSignUpForm(this.state.user);
-    if (payload.success) {
+    if (this.state.isSignup) {
+      var payload_signup = validateSignUpForm(this.state.user);
+    } else {
+      var payload_login = validateLoginUpForm(this.state.user);
+    }
+    if ((this.state.isSignup && payload_signup.success )|| (!this.state.isSignup && payload_login.success )) {
       this.setState({
         errors: {}
       });
       var user = {
-        landlord_checkbox: this.state.user.landlord_checkbox,
         pw: this.state.user.password,
         email: this.state.user.email
       };
       this.submitSignup(user);
     } else {
-      const errors = payload.errors;
+      const errors = this.state.isSignup ? payload_signup.errors : payload_login.errors;
       this.setState({
         errors
       });
@@ -129,6 +145,8 @@ export default class SignUpContainer extends Component {
           btnTxt={this.state.btnTxt}
           type={this.state.type}
           pwMask={this.pwMask}
+          isSignup={this.state.isSignup}
+          changeIsSignup = {this.changeIsSignup}
         />
       </div>
     );

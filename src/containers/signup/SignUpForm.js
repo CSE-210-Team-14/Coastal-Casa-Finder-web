@@ -14,7 +14,9 @@ const SignUpForm = ({
   btnTxt,
   type,
   pwMask,
-  onPwChange
+  onPwChange, 
+  isSignup,
+  changeIsSignup,
 }) => {
 
   return (
@@ -24,7 +26,7 @@ const SignUpForm = ({
                 <span aria-hidden="true">&times;</span>
           </button>
       </div>
-      <h1>Sign Up</h1>
+      <h1>{isSignup ? "Sign Up" : "Sign In"}</h1>
       {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
       <form onSubmit={onSubmit}>
         <div className="signUpFields">
@@ -47,6 +49,7 @@ const SignUpForm = ({
           helperText={errors.password}
         />
         </div>
+        {isSignup ? 
         <div className="signUpFields">
         <TextField
           type={type}
@@ -56,8 +59,8 @@ const SignUpForm = ({
           onChange={onChange}
           error={"pwconfirm" in errors}
           helperText={errors.pwconfirm}
-        />
-        </div>
+        /> 
+        </div> : null}
         <div className="pwStrRow">
           {score >= 1 && (
             <div>
@@ -70,19 +73,18 @@ const SignUpForm = ({
             </div>
             )} 
         </div>
-        <div className="signUpFields">
-          <input type="checkbox" id="scales" name="landlord_checkbox"></input>
-          I am a landlord
-          </div>
         <Button 
-          variant="contained"
           className="signUpSubmit"
+          onClick={dismissSignup}
           type="submit"
-        >Sign Up</Button>
+        >{isSignup ? "Sign Up" : "Sign In"}</Button>
       </form>
       <p>
-        Aleady have an account? <br />
-        <a href="/">Log in here</a>
+        <Button 
+          className="signUpSubmit"
+          onClick={changeIsSignup}
+          type="submit"
+        >{isSignup ? "Already have an account? Sign in here" : "Don't have an account? Sign up here"}</Button>
       </p>
     </div>
   );
