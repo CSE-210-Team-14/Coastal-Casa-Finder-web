@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EditText } from "react-edit-text";
 import "./listingInfo.scss";
-import 'reactjs-popup/dist/index.css';
+import "reactjs-popup/dist/index.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ListingInfo = () => {
@@ -19,18 +19,18 @@ const ListingInfo = () => {
   const handleSave = () => {
     if (currentListing.bedroom < 0 || currentListing.bathroom < 0) {
       alert("Unable to save: invalid input for bedroom or bathroom");
-    }
-    else {
+    } else {
       setEditState(true);
+      //TODO Add a backend edit call here
       alert("Listing has been saved");
     }
-  }
+  };
 
   let navigate = useNavigate();
 
   const previousPage = () => {
     navigate(-1);
-  }
+  };
 
   const handleDescChange = (event) => {
     currentListing.desc = event.value;
@@ -40,7 +40,7 @@ const ListingInfo = () => {
     currentListing.amenities = event.value;
   };
 
-  const handleBedChange = (event) => { 
+  const handleBedChange = (event) => {
     currentListing.bedroom = event.value;
   };
 
@@ -54,9 +54,12 @@ const ListingInfo = () => {
 
   return (
     <>
-      <button className="return-button" onClick={() => {
-            previousPage();
-          }}></button>
+      <button
+        className="return-button"
+        onClick={() => {
+          previousPage();
+        }}
+      ></button>
       <h2 className="listing-name">{currentListing.name}</h2>
       <div className="listing">
         <img
