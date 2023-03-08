@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { EditText } from "react-edit-text";
 import "./listingInfo.scss";
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -18,8 +17,13 @@ const ListingInfo = () => {
   };
 
   const handleSave = () => {
-    setEditState(true);
-    alert("Listing has been saved");
+    if (currentListing.bedroom < 0 || currentListing.bathroom < 0) {
+      alert("Unable to save: invalid input for bedroom or bathroom");
+    }
+    else {
+      setEditState(true);
+      alert("Listing has been saved");
+    }
   }
 
   let navigate = useNavigate();
@@ -36,7 +40,7 @@ const ListingInfo = () => {
     currentListing.amenities = event.value;
   };
 
-  const handleBedChange = (event) => {
+  const handleBedChange = (event) => { 
     currentListing.bedroom = event.value;
   };
 
