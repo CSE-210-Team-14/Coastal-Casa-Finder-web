@@ -73,12 +73,9 @@ const UserView = () => {
 
   return (
     <>
-      <h2 className="text-3xl font-semibold mt-2 mb-6">User Listings</h2>
-      <div>
-        <div className="listings-main">
-          <p className="text-3xl font-semibold mt-2 mb-6">Selected Listings</p>
-          <p className="num-listing">{userListings.length} Listings</p>
-        </div>
+      <h2 className="text-3xl font-semibold mt-2 mb-6">Available Listings</h2>
+      <p className="num-listing">{userListings.length} Listings</p>
+      <div className="listing">
         <div>{userListings}</div>
         {!fetchAllData ? (
           <div id="currentListing" className="listings-details-user">

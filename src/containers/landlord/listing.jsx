@@ -24,11 +24,10 @@ const Listing = (props) => {
   return (
     <div className="listing-main">
       <img src={`data:image/jpeg;base64,${props.pic}`} alt="" />
-      <p>{props.name}</p>
-      <p>{props.price}</p>
-      <p>{props.name}</p>
-      <p>{props.bedroom}</p>
-      <p>{props.bathroom}</p>
+      <p>Name: {props.name}</p>
+      <p>Price: {props.price}</p>
+      <p>Bed: {props.bedroom}</p>
+      <p>Bath: {props.bathroom}</p>
       <button
         type="button"
         onClick={() => {

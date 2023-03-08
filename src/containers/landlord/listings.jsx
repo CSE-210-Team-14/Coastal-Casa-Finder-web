@@ -30,7 +30,7 @@ const Listings = () => {
   for (const entry of dataFromDB) {
     listingData.push({
       id: entry.listing.id,
-      name: entry.listing.description,
+      name: entry.listing.name,
       desc: entry.listing.description,
       amenities: entry.listing.amenities,
       price: entry.listing.price,
