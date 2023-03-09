@@ -66,6 +66,8 @@ const Listings = () => {
     landlordListings.push(<Listing {...listing} />);
   }
 
+  console.log(landlordListings);
+
   const applicationsPending = [];
   for (const application of applicationData) {
     applicationsPending.push(<Application {...application} />);
