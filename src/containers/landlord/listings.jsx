@@ -8,7 +8,7 @@ const Listings = () => {
   const [fetchDataFromDB, setFetchDataFromDB] = useState(true);
   const [dataFromDB, setDataFromDB] = useState([]);
 
-  let currentEmail = "email@email.com";
+  let currentEmail = "user@email.com";
   const landlordEmail = currentEmail.split("@");
 
   useEffect(() => {
@@ -24,7 +24,6 @@ const Listings = () => {
     }
   }, [fetchDataFromDB, landlordEmail]);
 
-  // console.log(dataFromDB);
   const listingData = [];
 
   for (const entry of dataFromDB) {
@@ -65,8 +64,6 @@ const Listings = () => {
   for (const listing of listingData) {
     landlordListings.push(<Listing {...listing} />);
   }
-
-  console.log(landlordListings);
 
   const applicationsPending = [];
   for (const application of applicationData) {

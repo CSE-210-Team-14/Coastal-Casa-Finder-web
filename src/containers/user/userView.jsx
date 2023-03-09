@@ -68,7 +68,6 @@ const UserView = () => {
     );
   }
 
-  // console.log(name, desc, amenities, price, bathroom, bedroom);
 
   return (
     <>
