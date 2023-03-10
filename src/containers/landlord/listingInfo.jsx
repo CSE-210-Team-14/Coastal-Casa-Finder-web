@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { EditText } from "react-edit-text";
 import "./listingInfo.scss";
+import "reactjs-popup/dist/index.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ListingInfo = () => {
@@ -10,11 +11,18 @@ const ListingInfo = () => {
 
   const [editState, setEditState] = useState(true);
 
-  const handleClick = () => {
-    if (editState === true) {
-      setEditState(false);
+  const handleEdit = () => {
+    setEditState(false);
+    alert("Able to edit listing");
+  };
+
+  const handleSave = () => {
+    if (currentListing.bedroom < 0 || currentListing.bathroom < 0) {
+      alert("Unable to save: invalid input for bedroom or bathroom");
     } else {
       setEditState(true);
+      //TODO Add a backend edit call here
+      alert("Listing has been saved");
     }
   };
 
@@ -22,7 +30,7 @@ const ListingInfo = () => {
 
   const previousPage = () => {
     navigate(-1);
-  }
+  };
 
   const handleDescChange = (event) => {
     currentListing.desc = event.value;
@@ -46,9 +54,12 @@ const ListingInfo = () => {
 
   return (
     <>
-      <button className="return-button" onClick={() => {
-            previousPage();
-          }}></button>
+      <button
+        className="return-button"
+        onClick={() => {
+          previousPage();
+        }}
+      ></button>
       <h2 className="listing-name">{currentListing.name}</h2>
       <div className="listing">
         <img
@@ -83,6 +94,7 @@ const ListingInfo = () => {
           <p className="property-text">Bedroom: </p>
           <EditText
             readonly={editState}
+            type="number"
             className="property-entry"
             onSave={handleBedChange}
             defaultValue={currentListing.bedroom}
@@ -93,6 +105,7 @@ const ListingInfo = () => {
           <p className="property-text">Bathroom: </p>
           <EditText
             readonly={editState}
+            type="number"
             className="property-entry"
             onSave={handleBathChange}
             defaultValue={currentListing.bathroom}
@@ -114,10 +127,18 @@ const ListingInfo = () => {
         <button
           className="edit-button"
           onClick={() => {
-            handleClick();
+            handleEdit();
           }}
         >
-          Update/Edit
+          Edit
+        </button>
+        <button
+          className="edit-button"
+          onClick={() => {
+            handleSave();
+          }}
+        >
+          Save
         </button>
       </div>
     </>

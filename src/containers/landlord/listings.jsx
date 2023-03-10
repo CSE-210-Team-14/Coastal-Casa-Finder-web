@@ -8,7 +8,7 @@ const Listings = () => {
   const [fetchDataFromDB, setFetchDataFromDB] = useState(true);
   const [dataFromDB, setDataFromDB] = useState([]);
 
-  let currentEmail = "email@email.com";
+  let currentEmail = "user@email.com";
   const landlordEmail = currentEmail.split("@");
 
   useEffect(() => {
@@ -24,13 +24,12 @@ const Listings = () => {
     }
   }, [fetchDataFromDB, landlordEmail]);
 
-  // console.log(dataFromDB);
   const listingData = [];
 
   for (const entry of dataFromDB) {
     listingData.push({
       id: entry.listing.id,
-      name: entry.listing.description,
+      name: entry.listing.name,
       desc: entry.listing.description,
       amenities: entry.listing.amenities,
       price: entry.listing.price,
@@ -73,7 +72,7 @@ const Listings = () => {
 
   return (
     <>
-      <h2 className="text-3xl font-semibold mt-2 mb-6">Landlord Listings</h2>
+      <h2 className="text-3xl font-semibold mt-2 mb-6 m-20">Landlord Listings</h2>
       <div className="listing">
         <div className="listings-main">
           <p className="text-3xl font-semibold mt-2 mb-6">Current Listings</p>

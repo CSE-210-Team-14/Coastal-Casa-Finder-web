@@ -1,5 +1,5 @@
 import React from "react";
-import "./application.scss";
+import './listing.scss'
 import {useNavigate} from "react-router-dom";
 
 
@@ -23,11 +23,11 @@ const Application = (props) => {
 
   return (
     <div className="listing-main">
-      <img src={props.pic} alt=""></img>
-      <p>{props.name}</p>
-      <p>{props.move}</p>
-      <p>{props.residents}</p>
-      <p>{props.score}</p>
+      <img src={props.pic} alt="" className="rounded-2xl md:w-80 md:h-52"></img>
+      <p>Name: {props.name}</p>
+      <p>Move-In: {props.move}</p>
+      <p>Residents: {props.residents}</p>
+      <p>Credit Score: {props.score}</p>
       <button type="button" onClick={()=>{toApplicationInfo()}}>Edit Application</button>
     </div>
   );

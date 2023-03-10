@@ -1,26 +1,37 @@
 .listing {
-    display: flex;
+  display: flex;
 }
-  
+
 .listings-main {
-    width: 50%;
-    height: 100%;
-    left: 20px;
-    top: 20px;
-  
-    background: #0000 !important;
-    border-radius: 20px;
+  width: 50%;
+  height: 100%;
+  left: 20px;
+  top: 20px;
+
+  background: #0000 !important;
+  border-radius: 20px;
 }
 
 .num-listing {
-    font-family: 'Abel';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 149.8%;
-    /* identical to box height, or 24px */
-  
-    text-align: center;
-  
-    color: #000;
+  font-family: "Abel";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 149.8%;
+  /* identical to box height, or 24px */
+
+  text-align: center;
+
+  color: #000;
+}
+
+.listings-details-user {
+  width: 50%;
+  height: 100%;
+  margin: 20px;
+  margin-right: 50px;
+
+  background: #0000 !important;
+  border-radius: 10px;
+
 }

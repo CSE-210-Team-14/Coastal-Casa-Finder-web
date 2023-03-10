@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import SignUp from "./containers/signup/SignUpContainer";
 import UserView from "./containers/user/userView";
 import axios from "axios";
+import Navbar from "./containers/navigation/navBar";
 
 class App extends Component {
   constructor() {
@@ -71,6 +72,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <Navbar />
         <div className="App">
           <Header
             placeholder={"Search for location"}
