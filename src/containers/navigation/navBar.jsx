@@ -12,23 +12,20 @@ const Navbar = () => {
   return (
     <>
         <header>
-            <Nav>
+            <Nav className="sticky overflow-hidden top-0 w-full">
                 <Bars />
     
                 <NavMenu>
                     <NavLink>Coastal Casa Finder</NavLink>
-                    <NavLink to='/userInfo' activestyle>
-                        User
-                    </NavLink>
-                    <NavLink to='/' activestyle>
-                        Landlord
-                    </NavLink>
-                    <NavLink to='/sign-up' activestyle>
-                        Sign Up
-                    </NavLink>
-                    <NavLink to='/search' activestyle>
-                        Search
-                    </NavLink>
+                    <NavBtn>
+                        <NavBtnLink to='/userInfo'>Home</NavBtnLink>
+                    </NavBtn>
+                    <NavBtn>
+                        <NavBtnLink to='/'>Landlord</NavBtnLink>
+                    </NavBtn>
+                    <NavBtn>
+                        <NavBtnLink to='/search'>Search</NavBtnLink>
+                    </NavBtn>
                     {/* Second Nav */}
                     {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
                 </NavMenu>
