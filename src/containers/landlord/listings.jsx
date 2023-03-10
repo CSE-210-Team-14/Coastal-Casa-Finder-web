@@ -72,7 +72,7 @@ const Listings = () => {
 
   return (
     <>
-      <h2 className="text-3xl font-semibold mt-2 mb-6">Landlord Listings</h2>
+      <h2 className="text-3xl font-semibold mt-2 mb-6 m-20">Landlord Listings</h2>
       <div className="listing">
         <div className="listings-main">
           <p className="text-3xl font-semibold mt-2 mb-6">Current Listings</p>

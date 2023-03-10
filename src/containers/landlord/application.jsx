@@ -1,5 +1,5 @@
 import React from "react";
-import "./application.scss";
+import './listing.scss'
 import {useNavigate} from "react-router-dom";
 
 
@@ -23,7 +23,7 @@ const Application = (props) => {
 
   return (
     <div className="listing-main">
-      <img src={props.pic} alt=""></img>
+      <img src={props.pic} alt="" className="rounded-2xl md:w-80 md:h-52"></img>
       <p>Name: {props.name}</p>
       <p>Move-In: {props.move}</p>
       <p>Residents: {props.residents}</p>
