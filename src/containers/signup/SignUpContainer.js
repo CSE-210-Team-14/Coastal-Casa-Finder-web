@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import SignUpForm from "./SignUpForm.js";
+import axios from "axios";
 const FormValidators = require("./validate");
 const validateSignUpForm = FormValidators.validateSignUpForm;
 const validateLoginUpForm = FormValidators.validateLoginUpForm;
 const zxcvbn = require("zxcvbn");
-
 
 export default class SignUpContainer extends Component {
   constructor(props) {
@@ -14,13 +14,13 @@ export default class SignUpContainer extends Component {
       user: {
         email: "",
         password: "",
-        pwconfirm: ""
+        pwconfirm: "",
       },
       isSignup: true,
       btnTxt: "show",
       type: "password",
       score: "0",
-      dismissSignup: false
+      dismissSignup: false,
     };
 
     this.pwMask = this.pwMask.bind(this);
@@ -37,16 +37,16 @@ export default class SignUpContainer extends Component {
     user[field] = event.target.value;
 
     this.setState({
-      user
+      user,
     });
   }
 
   changeIsSignup() {
-    this.setState(state =>
+    this.setState((state) =>
       Object.assign({}, state, {
-        isSignup: !state.isSignup
+        isSignup: !state.isSignup,
       })
-    ); 
+    );
   }
 
   pwHandleChange(event) {
@@ -55,85 +55,116 @@ export default class SignUpContainer extends Component {
     user[field] = event.target.value;
 
     this.setState({
-      user
+      user,
     });
 
     if (event.target.value === "") {
-      this.setState(state =>
+      this.setState((state) =>
         Object.assign({}, state, {
-          score: "null"
+          score: "null",
         })
       );
     } else {
       var pw = zxcvbn(event.target.value);
-      this.setState(state =>
+      this.setState((state) =>
         Object.assign({}, state, {
-          score: pw.score + 1
+          score: pw.score + 1,
         })
       );
     }
   }
-  
-  submitSignup(user) {
-    //either use submit signup or submit login here 
-    // var params = { landlord_checkbox: user.landlord_checkbox, password: user.pw, email: user.email };
-    // TODO:  Connect to our server
-    /*'''axios
-      .post("https://ouramazingserver.com/api/signup/submit", params)
-      .then(res => {
-        if (res.data.success === true) {
-          localStorage.token = res.data.token;
-          localStorage.isAuthenticated = true;
-          window.location.reload();
-        } else {
-          this.setState({
-            errors: { message: res.data.message }
-          });
+
+  async submitSignup(e) {
+    e.preventDefault();
+    if (this.state.isSignup) {
+      const response = await axios.post(
+        "http://18.196.64.140:8080/landlord/signup",
+        {
+          email: this.state.user.email,
+          password: this.state.user.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
         }
-      })
-      .catch(err => {
-        console.log("Sign up data submit error: ", err);
-      });*/
+      );
+      localStorage.setItem("user", this.state.user.email);
+      localStorage.setItem("JWTToken", response.data.data);
+    } else {
+      const response = await axios.post(
+        "http://18.196.64.140:8080/landlord/signin",
+        {
+          email: this.state.user.email,
+          password: this.state.user.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      localStorage.setItem("user", this.state.user.email);
+      localStorage.setItem("JWTToken", response.data.data);
+    }
   }
 
   validateForm(event) {
     event.preventDefault();
+    this.submitSignup(event);
     if (this.state.isSignup) {
       var payload_signup = validateSignUpForm(this.state.user);
     } else {
       var payload_login = validateLoginUpForm(this.state.user);
     }
-    if ((this.state.isSignup && payload_signup.success )|| (!this.state.isSignup && payload_login.success )) {
+    if (
+      (this.state.isSignup && payload_signup.success) ||
+      (!this.state.isSignup && payload_login.success)
+    ) {
       this.setState({
-        errors: {}
+        errors: {},
       });
-      var user = {
-        pw: this.state.user.password,
-        email: this.state.user.email
-      };
-      this.submitSignup(user);
+      // var user = {
+      //   pw: this.state.user.password,
+      //   email: this.state.user.email,
+      // };
+      // this.submitSignup();
     } else {
-      const errors = this.state.isSignup ? payload_signup.errors : payload_login.errors;
+      const errors = this.state.isSignup
+        ? payload_signup.errors
+        : payload_login.errors;
       this.setState({
-        errors
+        errors,
       });
     }
   }
 
   pwMask(event) {
     event.preventDefault();
-    this.setState(state =>
+    this.setState((state) =>
       Object.assign({}, state, {
         type: this.state.type === "password" ? "input" : "password",
-        btnTxt: this.state.btnTxt === "show" ? "hide" : "show"
+        btnTxt: this.state.btnTxt === "show" ? "hide" : "show",
       })
     );
   }
 
   render() {
     return (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', zIndex: 999 }}>
-          <SignUpForm
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          zIndex: 999,
+        }}
+      >
+        <SignUpForm
           dismissSignup={this.props.dismissSignup}
           onSubmit={this.validateForm}
           onShow={this.props.show}
@@ -146,7 +177,7 @@ export default class SignUpContainer extends Component {
           type={this.state.type}
           pwMask={this.pwMask}
           isSignup={this.state.isSignup}
-          changeIsSignup = {this.changeIsSignup}
+          changeIsSignup={this.changeIsSignup}
         />
       </div>
     );
