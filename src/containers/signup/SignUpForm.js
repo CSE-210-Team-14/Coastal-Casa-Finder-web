@@ -5,8 +5,8 @@ import PasswordStr from "./PasswordStr";
 import "./style.css";
 
 const SignUpForm = ({
-  onSubmit,
   dismissSignup,
+  onSubmit,
   onChange,
   errors,
   user,
@@ -85,11 +85,7 @@ const SignUpForm = ({
             </div>
           )}
         </div>
-        <Button
-          className="signUpSubmit"
-          onClick={() => dismissSignup}
-          type="submit"
-        >
+        <Button className="signUpSubmit" onClick={() => onSubmit} type="submit">
           {isSignup ? "Sign Up" : "Sign In"}
         </Button>
       </form>

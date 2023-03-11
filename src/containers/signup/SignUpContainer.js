@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import SignUpForm from "./SignUpForm.js";
 import axios from "axios";
-const FormValidators = require("./validate");
-const validateSignUpForm = FormValidators.validateSignUpForm;
-const validateLoginUpForm = FormValidators.validateLoginUpForm;
+// const FormValidators = require("./validate");
+// const validateSignUpForm = FormValidators.validateSignUpForm;
+// const validateLoginUpForm = FormValidators.validateLoginUpForm;
 const zxcvbn = require("zxcvbn");
 
 export default class SignUpContainer extends Component {
@@ -92,6 +92,7 @@ export default class SignUpContainer extends Component {
       );
       localStorage.setItem("user", this.state.user.email);
       localStorage.setItem("JWTToken", response.data.data);
+      window.dispatchEvent(new Event("storage"));
     } else {
       const response = await axios.post(
         "http://18.196.64.140:8080/landlord/signin",
@@ -108,37 +109,14 @@ export default class SignUpContainer extends Component {
       );
       localStorage.setItem("user", this.state.user.email);
       localStorage.setItem("JWTToken", response.data.data);
+      window.dispatchEvent(new Event("storage"));
     }
+    this.props.dismissSignup();
   }
 
   validateForm(event) {
     event.preventDefault();
     this.submitSignup(event);
-    if (this.state.isSignup) {
-      var payload_signup = validateSignUpForm(this.state.user);
-    } else {
-      var payload_login = validateLoginUpForm(this.state.user);
-    }
-    if (
-      (this.state.isSignup && payload_signup.success) ||
-      (!this.state.isSignup && payload_login.success)
-    ) {
-      this.setState({
-        errors: {},
-      });
-      // var user = {
-      //   pw: this.state.user.password,
-      //   email: this.state.user.email,
-      // };
-      // this.submitSignup();
-    } else {
-      const errors = this.state.isSignup
-        ? payload_signup.errors
-        : payload_login.errors;
-      this.setState({
-        errors,
-      });
-    }
   }
 
   pwMask(event) {
