@@ -130,7 +130,10 @@ class App extends Component {
                 price={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.price : ""}  
                 email={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.landlord_email : ""} 
                 amenities={typeof(this.state.currentDetailItem.listing) !== "undefined"? this.state.currentDetailItem.listing.amenities : ""}  
-                buttonText={"Contact Landlord"}></DetailCard>}
+                buttonText={"Contact Landlord"} apply={"Apply"} 
+                formDetails={{name: "", move: "", residents: 0, score: 0, email: this.state.currentDetailItem.listing.landlord_email,
+                pic: this.state.currentDetailItem.images[0].image_data}}>
+                </DetailCard>}
                 </section>
               </main>
             )}
