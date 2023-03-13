@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import { SearchIcon, MenuIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { MdOutlineShower } from "react-icons/md";
 import { BiBed } from "react-icons/bi";
-import Slider from "@mui/material/Slider";
 import { BsCurrencyDollar } from "react-icons/bs";
-import DatePicker from "react-date-picker/dist/entry.nostyle";
 import "./datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "react-calendar/dist/Calendar.css";
 import SignUp from "../containers/signup/SignUpContainer";
 import Button from "@mui/material/Button";
 
@@ -31,19 +28,19 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   useremail,
 }) => {
   var [searchInput, setSearchInput] = useState("");
-  var [startDate, setStartDate] = useState(new Date());
   var [noBed, setNoBed] = useState<any>(1);
   var [noBath, setNoBath] = useState<any>(1);
   var [price, setPrice] = useState<any>(1000);
-  var [dist, setDist] = useState<any>(10);
+  var [showSearchBar, setShowSearchBar] = useState<any>(true);
   const [email, setEmail] = useState<any>("");
   const [userButtonOnClick, setUserButtonOnClick] = useState(false);
 
-  const handleSelect = (startDate: any) => {
-    setStartDate(startDate);
-  };
   const resetInput = () => {
+    showSearchBarFunc(true)
     setSearchInput("");
+  };
+  const showSearchBarFunc = (e) => {
+    setShowSearchBar(e);
   };
 
   useEffect(() => {
@@ -79,7 +76,9 @@ const Header: React.FunctionComponent<HeaderProps> = ({
       <div className="flex items-center border-2 rounded-full py-2  md:border-2 md:shadow-sm">
         <input
           value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={function (e) {
+            showSearchBarFunc(true);
+            setSearchInput(e.target.value)}}
           className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-500 placeholder-gray-400"
           placeholder={placeholder || "Search for location"}
           type="text"
@@ -88,6 +87,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
           className="hidden md:inline-flex h-8 bg-blue-400 text-white rounded-full
         p-2 cursor-pointer md:mx-2"
           onClick={function () {
+            showSearchBarFunc(false);
             search(searchInput, price, noBed, noBath);
           }}
         />
@@ -114,25 +114,9 @@ const Header: React.FunctionComponent<HeaderProps> = ({
         )}
       </div>
 
-      {searchInput && (
+      {searchInput && showSearchBar && (
         <div className="flex flex-col col-span-3 mx-auto">
-          <div className="flex items-center mb-6">
-            Start Date
-            <DatePicker
-              onChange={handleSelect}
-              value={startDate}
-              className="react-date-picker"
-            />
-          </div>
           <div className="flex items-center mb-4">
-            Radius (miles)
-            <Slider
-              size="small"
-              defaultValue={dist}
-              aria-label="Small"
-              valueLabelDisplay="auto"
-              onChange={setDist}
-            />
           </div>
 
           <div className="flex items-center mb-6 pl-4">
@@ -167,7 +151,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({
             </button>
             <button
               className="flex-grow text-blue-400"
-              onClick={function () {
+              onClick={function () { 
+                showSearchBarFunc(false);
                 search(searchInput, price, noBed, noBath);
               }}
             >
