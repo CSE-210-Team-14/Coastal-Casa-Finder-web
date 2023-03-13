@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { SearchIcon, MenuIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { MdOutlineShower } from "react-icons/md";
 import { BiBed } from "react-icons/bi";
-import Slider from "@mui/material/Slider";
 import { BsCurrencyDollar } from "react-icons/bs";
 import "./datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
