@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { EditText } from "react-edit-text";
 import "./listingInfo.scss";
 import "reactjs-popup/dist/index.css";
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ListingInfo = () => {
@@ -16,13 +17,26 @@ const ListingInfo = () => {
     alert("Able to edit listing");
   };
 
-  const handleSave = () => {
+  // console.log(currentListing);
+  const handleSave = async () => {
     if (currentListing.bedroom < 0 || currentListing.bathroom < 0) {
       alert("Unable to save: invalid input for bedroom or bathroom");
     } else {
       setEditState(true);
       //TODO Add a backend edit call here
-      alert("Listing has been saved");
+      await axios.put("http://18.196.64.140:8080/listings/update/2", "", {
+        params: {
+          name: currentListing.name,
+          landlord_email: '"user@email.com"',
+          description: currentListing.desc,
+          location: currentListing.location,
+          price: currentListing.price,
+          num_bathrooms: currentListing.bedroom,
+          num_bedrooms: currentListing.bathroom,
+          amenities: currentListing.amenities,
+          images: currentListing.pic,
+        },
+      });
     }
   };
 
